@@ -1,1 +1,1 @@
-docker run -it --rm ldf-client http://192.168.1.100:3000/scale1000 'SELECT * WHERE { ?s ?p ?o } LIMIT 100'
+docker run -it --rm --net="host" ldf-client http://localhost:3000/scale1000 'SELECT * WHERE { ?s ?p ?o } LIMIT 100'

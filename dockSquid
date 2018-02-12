@@ -1,1 +1,1 @@
-docker run -d --rm --name squid -p 3128:3128 --volume $(pwd)/squid.conf:/etc/squid3/squid.conf squid
+docker run -d --rm --net="host" --name squid --volume $(pwd)/squid.conf:/etc/squid3/squid.conf squid
