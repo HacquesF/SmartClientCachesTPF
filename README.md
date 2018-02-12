@@ -24,6 +24,7 @@ If Squid won't launch, a local Squid may already be listenning to port 3128, so 
 # Sources
 Squid:
 > https://github.com/sameersbn/docker-squid
+
 Ldf-client/server
 > https://github.com/LinkedDataFragments
 
