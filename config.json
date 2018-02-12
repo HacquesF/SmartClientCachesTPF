@@ -1,0 +1,17 @@
+{
+  "title": "My Linked Data Fragments server",
+  "datasources": {
+    "scale1000": {
+      "title": "Scale 1000",
+      "type": "HdtDatasource",
+      "description": "Scale 1000 from zip file",
+      "settings": { "file": "zip/scale1000.hdt" }
+    },
+    "watDiv": {
+      "title": "watDiv Dataset 100",
+      "type": "HdtDatasource",
+      "description": "watDiv Dataset from zip",
+      "settings": { "file": "zip/watDivDataset100.hdt" }
+    }
+  }
+}

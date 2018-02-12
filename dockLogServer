@@ -1,0 +1,1 @@
+docker exec -it ldf-server tail -f /tmp/accessScale1000.log
