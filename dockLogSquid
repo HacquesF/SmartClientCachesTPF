@@ -1,1 +1,1 @@
-docker exec -it squid tail -f /var/log/squid3/acss.log
+docker exec -it squid tail -f /var/log/squid3/access.log
