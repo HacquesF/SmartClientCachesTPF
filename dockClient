@@ -1,1 +1,4 @@
-docker run -it --rm --net="host" ldf-client http://localhost:3000/scale1000 'SELECT * WHERE { ?s ?p ?o } LIMIT 100'
+docker run -it --net=host --rm ldf-client http://localhost:3000/scale1000 'SELECT * WHERE { ?s ?p ?o } LIMIT 100'
+
+
+#docker run -it --rm ldf-client http://fragments.dbpedia.org/2015/en 'SELECT * WHERE { ?s ?p ?o } LIMIT 100'

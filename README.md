@@ -31,5 +31,10 @@ Ldf-client/server
 # Problem
 
 Make ldf-client use a proxy.
-	-https://github.com/LinkedDataFragments/Client.js/issues/16 Then ENV http_proxy won't work.
-	-Idea: https://github.com/jpetazzo/squid-in-a-can
+
+-https://github.com/LinkedDataFragments/Client.js/issues/16 Then ENV http_proxy won't work.
+
+	Iptables
+> sudo iptables -t nat -A OUTPUT -s 127.0.0.1 -p tcp --dport 3000 -j REDIRECT --to 3129
+
+Throw the correct redirection to squid if 3129 is in intercept. Right now squid refuse to pass the request. Probably squid.conf problems.
