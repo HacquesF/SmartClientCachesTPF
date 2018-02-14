@@ -4,6 +4,3 @@
 [submodule "Server.js"]
 	path = Server.js
 	url = https://github.com/HacquesF/Server.js.git
-[submodule "docker-squid"]
-	path = docker-squid
-	url = https://github.com/HacquesF/docker-squid.git
