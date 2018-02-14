@@ -1,4 +1,6 @@
-docker run -it --rm ldf-client http://192.168.1.100:3000/scale1000 'SELECT * WHERE { ?s ?p ?o } LIMIT 100'
+#!/bin/bash
+addIP=`sudo ifconfig eth0| grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'`
+docker run -it --rm ldf-client http://$addIP:3000/scale1000 'SELECT * WHERE { ?s ?p ?o } LIMIT 100'
 
 
 #docker run -it --rm ldf-client http://fragments.dbpedia.org/2015/en 'SELECT * WHERE { ?s ?p ?o } LIMIT 100'
