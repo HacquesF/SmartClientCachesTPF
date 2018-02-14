@@ -1,3 +1,3 @@
-#docker run --net=host --rm -d --name squid --volume $(pwd)/squid.conf:/etc/squid3/squid.conf -v $(pwd)/redirect.php:/etc/squid3/redirect.php squid
+#docker run --rm -d --name squid -p 3128:3128 -p 3129:3129 --volume $(pwd)/squid.conf:/etc/squid3/squid.conf squid
 
-docker run --rm --net=host -d --name squid --volume $(pwd)/squid.conf:/etc/squid3/squid.conf -v $(pwd)/squid_redirector.pl:/etc/squid3/squid_redirector.pl squid
+docker run --rm --net=host -d --name squid --volume $(pwd)/squid.conf:/etc/squid3/squid.conf squid
