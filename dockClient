@@ -1,4 +1,6 @@
-docker run -it --rm ldf-client http://192.168.1.100:3000/scale1000 'SELECT * WHERE { ?s ?p ?o } LIMIT 100'
+#docker run -it --rm ldf-client http://192.168.1.100:3000/scale1000 'SELECT * WHERE { ?s ?p ?o } LIMIT 10'
 
+docker run -it --rm -v $(pwd)/test.sparql:/tmp/test.sparql ldf-client http://192.168.1.100:3000/scale1000 -f /tmp/test.sparql
+#docker run -it --rm ldf-client http://fragments.dbpedia.org/2015/en 'SELECT * WHERE { ?s ?p ?o } LIMIT 10'
 
-#docker run -it --rm ldf-client http://fragments.dbpedia.org/2015/en 'SELECT * WHERE { ?s ?p ?o } LIMIT 100'
+#docker run -it --rm -v $(pwd)/test2.sparql:/tmp/test2.sparql ldf-client http://fragments.dbpedia.org/2015/en -f /tmp/test2.sparql

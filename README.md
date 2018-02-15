@@ -38,3 +38,11 @@ Make ldf-client use a proxy.
 > sudo iptables -t nat -A PREROUTING -p tcp --dport 3000 -j REDIRECT --to 3129 -w
 
 Works with that on the host.
+
+	Cache
+
+Everything goes in memory, can't find how to make it work on disk. That won't be a problem since we can tweak it with cache_mem.
+
+	Client access
+
+Can't use localhost to access the server, need to use the local ip.
