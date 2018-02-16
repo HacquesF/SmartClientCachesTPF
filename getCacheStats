@@ -1,0 +1,9 @@
+#!/bin/bash
+
+LOG=$(docker exec -it squid cat /var/log/squid3/access.log)
+#Cache hit
+echo "$LOG" | grep TCP.*_HIT | wc -l
+#Cache miss
+echo "$LOG" | grep TCP.*_MISS | wc -l
+#All intercepted request
+echo "$LOG" | wc -l
