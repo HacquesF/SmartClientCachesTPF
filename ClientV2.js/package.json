@@ -1,0 +1,15 @@
+{
+ "name": "ldf-allClient",
+ "version": "1.0.0",
+ "description": "ldf-client but with multiple queries in JSON",
+ "main": "ldf-allClient.js",
+ "engines": {
+  "node": ">=4.0"
+ },
+ "bin": {
+  "ldf-allClient": "./bin/ldf-allClient"
+ },
+ "dependencies": {
+  "ldf-client": "^2.0.5"
+ }
+}
