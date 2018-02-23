@@ -1,0 +1,19 @@
+We got 3750 pages
+Comment are long, thus taking more space, so we can take it as an upper bound.
+So roughly 150kB/page with 3750 pages gives 562 500kB.
+
+On the other hand, triples about dates seems to be the smallest, which we can use as lower bound.
+With 75kB/page we got 281 250kB.
+
+The difference is huge.
+
+By taking random pages with "?s ?p ?o" we got an average of 100kB/page.
+That would mean 375 000kB for the whole database.
+
+      LowerB      AVG      UpperB
+5%   14 062.5   18 750     28 125
+10%  28 125     37 500     56 250
+15%  42 187.5   56 250     84 375
+20%  56 250     75 000     112 500
+25%  70 312.5   93 750     140 625
+30%  84 375     112 500    168 750

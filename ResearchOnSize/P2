@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en" prefix="hydra: http://www.w3.org/ns/hydra/core# void: http://rdfs.org/ns/void#">
+<head>
+  <meta charset="utf-8">
+  <title>BSBM1000 | My Linked Data Fragments server</title>
+  <link rel="stylesheet" href="/assets/styles/ldf-server" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:700italic,400,700|Droid+Sans+Mono" type="text/css" />
+  <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+</head>
+<body>
+  <header>
+    <h1><a href="/">My Linked Data Fragments server</a></h1>
+    <figure class="logo">
+      <a href="http://linkeddatafragments.org/"><img src="/assets/images/logo" alt="Linked Data Fragments" /></a>
+    </figure>
+  </header>
+  <main>
+  
+
+<div resource="http://localhost:3000/scale1000#dataset" typeof="void:datasource hydra:Collection">
+<h2><a href="http://localhost:3000/scale1000#dataset">BSBM1000</a></h2>
+
+<form action="?" method="GET" property="hydra:search" resource="#triplePattern">
+  <fieldset resource="#triplePattern">
+    <legend>Query BSBM1000 by triple pattern</legend>
+    <span property="hydra:template" content="http://localhost:3000/scale1000{?subject,predicate,object}" lang=""></span>
+    <span property="hydra:variableRepresentation" resource="hydra:ExplicitRepresentation"></span>
+    <ul>
+      <li property="hydra:mapping" resource="#subject">
+        <label for="subject"
+               about="#subject" property="hydra:variable" lang="">subject</label>
+       <input class="uri" id="subject" name="subject"
+              about="#subject" property="hydra:property" resource="rdf:subject"  value="" />
+      </li>
+      <li property="hydra:mapping" resource="#predicate">
+        <label for="predicate"
+               about="#predicate" property="hydra:variable" lang="">predicate</label>
+       <input class="uri" id="predicate" name="predicate"
+              about="#predicate" property="hydra:property" resource="rdf:predicate"  value="" />
+      </li>
+      <li property="hydra:mapping" resource="#object">
+        <label for="object"
+               about="#object" property="hydra:variable" lang="">object</label>
+       <input class="uri" id="object" name="object"
+              about="#object" property="hydra:property" resource="rdf:object"  value="" />
+      </li>
+    </ul>
+  </fieldset>
+  <p>
+    <input type="submit" value="Find matching triples" />
+  </p>
+</form>
+</div>
+
+
+
+<h3>Matches in BSBM1000 for <em class="pattern">{ ?s ?p ?o }</em></h3>
+
+<div class="counts">
+
+  Showing triples 101 to 200 of
+  ±<span property="void:triples hydra:totalItems" datatype="xsd:integer" content="374911">374,911</span>
+  with <span property="hydra:itemsPerPage" datatype="xsd:integer" content="100">100</span> triples per page.
+    <ul class="links">
+        <li><a href="http://localhost:3000/scale1000?page=1" rel="first" property="hydra:first">first</a></li>
+    <li><a href="http://localhost:3000/scale1000?page=1" rel="prev" property="hydra:previous">previous</a></li>
+            <li><a href="http://localhost:3000/scale1000?page=3" rel="next" property="hydra:next">next</a></li>
+      </ul>
+
+</div>
+<ul class="triples">
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1018"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1018">ProductFeature1018</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-06-24%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1018">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-06-24</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1018"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1018">ProductFeature1018</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1018"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1018"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1018">ProductFeature1018</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1018"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1018"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1018">ProductFeature1018</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22lilies%20tragedians%20vervet%20newsier%20pekoe%20doormat%20bunkums%20siestas%20scalds%20pathologist%20narco%20lucubrations%20skippers%20unrelated%20trigons%20gauntness%20regimental%20decocted%20sugaring%20squadrons%20receivability%20lurcher%20gangplanks%20hypnotizes%20bacca%20joyance%20plaining%20guarantees%20acclimation%20manifolding%20disillusion%20medullas%20stencils%20unsterile%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1018">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">lilies tragedians vervet newsier pekoe doormat bunkums siestas scalds pathologist narco lucubrations skippers unrelated trigons gauntness regimental decocted sugaring squadrons receivability lurcher gangplanks hypnotizes bacca joyance plaining guarantees acclimation manifolding disillusion medullas stencils unsterile</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1018"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1018">ProductFeature1018</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22palatal%20unfermented%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1018">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">palatal unfermented</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1019"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1019">ProductFeature1019</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-06-29%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1019">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-06-29</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1019"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1019">ProductFeature1019</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1019"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1019"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1019">ProductFeature1019</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1019"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1019"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1019">ProductFeature1019</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22enricher%20inkle%20restaurants%20lunations%20buskined%20manually%20reloads%20pleasuring%20allocating%20reencounters%20enlarged%20modellers%20subtotaling%20underrate%20asker%20ligaturing%20werwolf%20dries%20edictally%20commutators%20relearn%20spurtles%20development%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1019">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">enricher inkle restaurants lunations buskined manually reloads pleasuring allocating reencounters enlarged modellers subtotaling underrate asker ligaturing werwolf dries edictally commutators relearn spurtles development</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1019"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1019">ProductFeature1019</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22desalinated%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1019">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">desalinated</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature102"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature102">ProductFeature102</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-07-15%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature102">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-07-15</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature102"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature102">ProductFeature102</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature102"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature102"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature102">ProductFeature102</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature102"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature102"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature102">ProductFeature102</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22nuances%20divagations%20crunches%20sickbay%20splined%20radioactively%20playgoers%20heeder%20insinuates%20drabness%20nonpermeable%20leghorns%20biodegrading%20unstably%20accesses%20electives%20theosophically%20trustfulness%20malignance%20sprights%20degaussing%20waxings%20peritonital%20heavily%20simplifies%20poppets%20joining%20maskers%20collegiums%20impasses%20fart%20weightless%20flipped%20archeries%20scratched%20wheezers%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature102">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">nuances divagations crunches sickbay splined radioactively playgoers heeder insinuates drabness nonpermeable leghorns biodegrading unstably accesses electives theosophically trustfulness malignance sprights degaussing waxings peritonital heavily simplifies poppets joining maskers collegiums impasses fart weightless flipped archeries scratched wheezers</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature102"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature102">ProductFeature102</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22pudgily%20precipitating%20sleazy%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature102">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">pudgily precipitating sleazy</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1020"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1020">ProductFeature1020</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-07-07%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1020">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-07-07</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1020"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1020">ProductFeature1020</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1020"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1020"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1020">ProductFeature1020</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1020"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1020"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1020">ProductFeature1020</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22kitlings%20justed%20hazards%20pulingly%20turquoises%20overstay%20repetitions%20stepbrother%20tokay%20nonintellectual%20prevailed%20liras%20correlatable%20gandering%20dubiousness%20removed%20twanging%20antinationalist%20harlot%20amucks%20sixing%20rifted%20lunching%20epilepsy%20coalyards%20inaudibility%20restates%20unlocks%20concludes%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1020">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">kitlings justed hazards pulingly turquoises overstay repetitions stepbrother tokay nonintellectual prevailed liras correlatable gandering dubiousness removed twanging antinationalist harlot amucks sixing rifted lunching epilepsy coalyards inaudibility restates unlocks concludes</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1020"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1020">ProductFeature1020</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22arabian%20taupes%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1020">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">arabian taupes</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1021"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1021">ProductFeature1021</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-07-15%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1021">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-07-15</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1021"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1021">ProductFeature1021</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1021"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1021"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1021">ProductFeature1021</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1021"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1021"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1021">ProductFeature1021</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22withholding%20effervescence%20glimmers%20aggrandizing%20seminars%20countrywoman%20proneness%20detesting%20fairer%20weightless%20zoroastrians%20egoistical%20snooker%20politicked%20unicycles%20acidy%20interrupting%20danker%20deflagrate%20depersonalizes%20expatriate%20patinas%20hetero%20convoking%20dottily%20apium%20viscid%20crewing%20miladis%20corroborating%20elitism%20eugenism%20objection%20reeving%20nonforfeitable%20bathless%20squiffed%20infidels%20pewees%20racoon%20enginery%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1021">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">withholding effervescence glimmers aggrandizing seminars countrywoman proneness detesting fairer weightless zoroastrians egoistical snooker politicked unicycles acidy interrupting danker deflagrate depersonalizes expatriate patinas hetero convoking dottily apium viscid crewing miladis corroborating elitism eugenism objection reeving nonforfeitable bathless squiffed infidels pewees racoon enginery</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1021"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1021">ProductFeature1021</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22unwaveringly%20abluted%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1021">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">unwaveringly abluted</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1022"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1022">ProductFeature1022</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-06-26%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1022">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-06-26</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1022"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1022">ProductFeature1022</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1022"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1022"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1022">ProductFeature1022</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1022"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1022"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1022">ProductFeature1022</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22passingly%20deformations%20nonbelligerents%20buffoonery%20porches%20cozens%20responder%20reuse%20foveal%20weaners%20ulcers%20gills%20hierophant%20hebrews%20proabortion%20dispersing%20ramies%20imprecated%20bioactivities%20stacked%20throughways%20counterspies%20introducible%20jungliest%20selfheals%20irrefutability%20luxations%20shoptalks%20typescripts%20reffed%20lordliness%20modelling%20impingement%20anglers%20piquing%20odours%20pining%20joinings%20plages%20valorem%20meatiest%20butyls%20syncopation%20emboli%20inspirer%20dosimetries%20cuishes%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1022">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">passingly deformations nonbelligerents buffoonery porches cozens responder reuse foveal weaners ulcers gills hierophant hebrews proabortion dispersing ramies imprecated bioactivities stacked throughways counterspies introducible jungliest selfheals irrefutability luxations shoptalks typescripts reffed lordliness modelling impingement anglers piquing odours pining joinings plages valorem meatiest butyls syncopation emboli inspirer dosimetries cuishes</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1022"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1022">ProductFeature1022</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22pct%20bailers%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1022">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">pct bailers</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1023"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1023">ProductFeature1023</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-07-11%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1023">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-07-11</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1023"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1023">ProductFeature1023</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1023"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1023"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1023">ProductFeature1023</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1023"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1023"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1023">ProductFeature1023</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22tobogganed%20threadier%20marline%20coaster%20ambrosially%20acceptable%20piddler%20oink%20septet%20administrant%20gimel%20confiscates%20substation%20scholium%20subsidizations%20replenishing%20haughtier%20roundest%20biconvexity%20charminger%20snatches%20returnable%20catnapped%20anole%20didos%20noddle%20cations%20jailbait%20guppy%20expostulate%20wrathiest%20averaged%20nictitation%20dowdyish%20blusterer%20jogger%20feces%20squeezers%20autobuses%20havockers%20titters%20reduction%20rogues%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1023">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">tobogganed threadier marline coaster ambrosially acceptable piddler oink septet administrant gimel confiscates substation scholium subsidizations replenishing haughtier roundest biconvexity charminger snatches returnable catnapped anole didos noddle cations jailbait guppy expostulate wrathiest averaged nictitation dowdyish blusterer jogger feces squeezers autobuses havockers titters reduction rogues</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1023"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1023">ProductFeature1023</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22lumberers%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1023">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">lumberers</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1024"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1024">ProductFeature1024</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-07-16%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1024">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-07-16</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1024"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1024">ProductFeature1024</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1024"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1024"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1024">ProductFeature1024</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1024"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1024"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1024">ProductFeature1024</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22predestinating%20darks%20bountiful%20ghostliest%20gibbously%20bookrests%20freres%20pinfolding%20nutters%20interconnecting%20unmollified%20fledgy%20seniles%20abandoner%20steeples%20counterrevolutionary%20rulings%20lineable%20spectrometric%20criticize%20gradated%20dispossesses%20subarea%20recreate%20glasses%20automatically%20oration%20concluded%20zambezi%20reprogrammed%20tokonoma%20beholders%20edgeless%20upsetters%20falsest%20reaffirm%20polysorbate%20wryer%20departures%20prominently%20sportively%20unexceptionable%20obligating%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1024">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">predestinating darks bountiful ghostliest gibbously bookrests freres pinfolding nutters interconnecting unmollified fledgy seniles abandoner steeples counterrevolutionary rulings lineable spectrometric criticize gradated dispossesses subarea recreate glasses automatically oration concluded zambezi reprogrammed tokonoma beholders edgeless upsetters falsest reaffirm polysorbate wryer departures prominently sportively unexceptionable obligating</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1024"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1024">ProductFeature1024</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22enticers%20swarmed%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1024">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">enticers swarmed</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1025"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1025">ProductFeature1025</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-07-08%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1025">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-07-08</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1025"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1025">ProductFeature1025</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1025"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1025"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1025">ProductFeature1025</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1025"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1025"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1025">ProductFeature1025</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22unserviceably%20outplaying%20kaliph%20inconsistency%20outboards%20plangency%20exotisms%20hippodromes%20gumweed%20headfirst%20effectuation%20legalize%20photomicrograph%20drunkards%20grayouts%20oinked%20interregional%20invalidly%20hyperactive%20narcotizing%20kilocycle%20nonidentical%20photosynthesizing%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1025">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">unserviceably outplaying kaliph inconsistency outboards plangency exotisms hippodromes gumweed headfirst effectuation legalize photomicrograph drunkards grayouts oinked interregional invalidly hyperactive narcotizing kilocycle nonidentical photosynthesizing</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1025"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1025">ProductFeature1025</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22roundelays%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1025">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">roundelays</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1026"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1026">ProductFeature1026</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-06-21%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1026">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-06-21</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1026"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1026">ProductFeature1026</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1026"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1026"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1026">ProductFeature1026</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1026"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1026"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1026">ProductFeature1026</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22puerilities%20venins%20divergences%20brocading%20teensiest%20skewering%20rammers%20cadges%20alongshore%20loathes%20secularistic%20mantissas%20sonnetting%20barbwire%20imprecisely%20carbides%20atman%20humbly%20cankered%20fraggings%20israelis%20tripper%20djibouti%20bothered%20playwears%20adverseness%20caboose%20demotes%20fenestration%20nonmigratory%20communing%20flowerers%20sharpener%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1026">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">puerilities venins divergences brocading teensiest skewering rammers cadges alongshore loathes secularistic mantissas sonnetting barbwire imprecisely carbides atman humbly cankered fraggings israelis tripper djibouti bothered playwears adverseness caboose demotes fenestration nonmigratory communing flowerers sharpener</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1026"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1026">ProductFeature1026</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22geared%20overstrain%20ceilings%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1026">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">geared overstrain ceilings</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1027"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1027">ProductFeature1027</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-07-04%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1027">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-07-04</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1027"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1027">ProductFeature1027</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1027"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1027"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1027">ProductFeature1027</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1027"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1027"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1027">ProductFeature1027</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22whispers%20obverts%20bries%20flushed%20chargee%20episodically%20belligerents%20banshies%20cannibalized%20hazels%20cocainize%20cupped%20atomism%20cybernetically%20optimistically%20eradication%20duplicators%20unlimitedness%20wizen%20supplements%20impersonation%20pendulous%20denotations%20xeroderma%20decks%20riffled%20nonsexual%20inertly%20minx%20oldies%20roadways%20tunneled%20drilling%20gluttony%20twinning%20epicene%20batts%20unicycle%20chugs%20repudiations%20localists%20sleeks%20squabby%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1027">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">whispers obverts bries flushed chargee episodically belligerents banshies cannibalized hazels cocainize cupped atomism cybernetically optimistically eradication duplicators unlimitedness wizen supplements impersonation pendulous denotations xeroderma decks riffled nonsexual inertly minx oldies roadways tunneled drilling gluttony twinning epicene batts unicycle chugs repudiations localists sleeks squabby</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1027"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1027">ProductFeature1027</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22uniformities%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1027">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">uniformities</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1028"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1028">ProductFeature1028</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-07-08%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1028">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-07-08</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1028"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1028">ProductFeature1028</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1028"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1028"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1028">ProductFeature1028</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1028"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1028"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1028">ProductFeature1028</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22shoving%20tiffins%20chambray%20nonskid%20regrafting%20coughs%20annihilators%20punkin%20broiders%20threnodies%20tumefied%20cornels%20nulls%20centrums%20edification%20haole%20numbered%20subofficers%20progressiveness%20marchionesses%20loganberry%20farmyards%20autodials%20professionalize%20recapitulate%20sapid%20melancholiacs%20melancholic%20marker%20gaggers%20encipherments%20stringiest%20machicolation%20underprivileged%20stairs%20torqued%20variegating%20darnels%20catamounts%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1028">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">shoving tiffins chambray nonskid regrafting coughs annihilators punkin broiders threnodies tumefied cornels nulls centrums edification haole numbered subofficers progressiveness marchionesses loganberry farmyards autodials professionalize recapitulate sapid melancholiacs melancholic marker gaggers encipherments stringiest machicolation underprivileged stairs torqued variegating darnels catamounts</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1028"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1028">ProductFeature1028</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22carriers%20chelator%20kampuchea%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1028">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">carriers chelator kampuchea</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature103"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature103">ProductFeature103</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-06-20%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature103">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-06-20</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature103"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature103">ProductFeature103</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature103"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature103"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature103">ProductFeature103</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature103"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature103"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature103">ProductFeature103</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22overmodify%20qaids%20braless%20seducers%20doubling%20cobbers%20giftedly%20remigrating%20noxiously%20absurdness%20intertwinement%20ardours%20noggs%20piously%20diuretic%20unbridled%20wingspans%20shareability%20preserves%20blockbusting%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature103">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">overmodify qaids braless seducers doubling cobbers giftedly remigrating noxiously absurdness intertwinement ardours noggs piously diuretic unbridled wingspans shareability preserves blockbusting</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature103"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature103">ProductFeature103</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22makeweight%20statuaries%20flavored%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature103">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">makeweight statuaries flavored</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1030"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1030">ProductFeature1030</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-06-26%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1030">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-06-26</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1030"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1030">ProductFeature1030</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1030"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1030"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1030">ProductFeature1030</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1030"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1030"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1030">ProductFeature1030</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22couth%20melding%20irises%20netter%20roomed%20curares%20interminably%20dominica%20issei%20zaniness%20plumber%20secludes%20effecting%20dropshots%20lusters%20pourboire%20redemptible%20localites%20columbium%20mistranscribed%20barriers%20intertwinement%20disinterest%20muslins%20neoterics%20fungiform%20querier%20blent%20whaled%20expendable%20sesquipedalian%20tremolo%20osculum%20noggs%20overimpressed%20overcompensating%20perishable%20insatiate%20germanized%20stagiest%20abbreviated%20hunching%20xyster%20touchier%20bassoons%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1030">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">couth melding irises netter roomed curares interminably dominica issei zaniness plumber secludes effecting dropshots lusters pourboire redemptible localites columbium mistranscribed barriers intertwinement disinterest muslins neoterics fungiform querier blent whaled expendable sesquipedalian tremolo osculum noggs overimpressed overcompensating perishable insatiate germanized stagiest abbreviated hunching xyster touchier bassoons</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1030"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1030">ProductFeature1030</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22splenectomized%20casque%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1030">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">splenectomized casque</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1032"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1032">ProductFeature1032</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-06-20%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1032">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-06-20</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1032"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1032">ProductFeature1032</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1032"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1032"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1032">ProductFeature1032</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1032"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1032"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1032">ProductFeature1032</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22foetuses%20ventilators%20cowries%20reaching%20remodifies%20peccadilloes%20gashed%20glutei%20goslings%20coenzyme%20tongas%20extraditing%20rarefaction%20cannoned%20mycelium%20asteroids%20sorceress%20spinoffs%20misalphabetized%20repay%20gyroscopes%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1032">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">foetuses ventilators cowries reaching remodifies peccadilloes gashed glutei goslings coenzyme tongas extraditing rarefaction cannoned mycelium asteroids sorceress spinoffs misalphabetized repay gyroscopes</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1032"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1032">ProductFeature1032</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22underemphasized%20unsterile%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1032">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">underemphasized unsterile</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1033"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1033">ProductFeature1033</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-07-04%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1033">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-07-04</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1033"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1033">ProductFeature1033</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1033"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1033"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1033">ProductFeature1033</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1033"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1033"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1033">ProductFeature1033</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22indetermination%20guessing%20unpinning%20plasmoids%20duteous%20viticulture%20jinnee%20encapsuling%20ingress%20vaulters%20risus%20puggy%20internship%20disfunction%20scrimmages%20purgatively%20appliances%20stutters%20dimes%20socialites%20cesareans%20unweaving%20effecter%20bulkage%20bargemen%20ironsides%20fowls%20sexing%20undefiled%20phantasmagoria%20imperceptiveness%20verses%20wealthier%20narcissists%20rued%20comfortable%20estimated%20manoeuvre%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1033">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">indetermination guessing unpinning plasmoids duteous viticulture jinnee encapsuling ingress vaulters risus puggy internship disfunction scrimmages purgatively appliances stutters dimes socialites cesareans unweaving effecter bulkage bargemen ironsides fowls sexing undefiled phantasmagoria imperceptiveness verses wealthier narcissists rued comfortable estimated manoeuvre</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1033"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1033">ProductFeature1033</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22indraft%20tentacular%20damasked%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1033">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">indraft tentacular damasked</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1034"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1034">ProductFeature1034</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-07-13%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1034">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-07-13</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1034"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1034">ProductFeature1034</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1034"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1034"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1034">ProductFeature1034</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1034"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1034"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1034">ProductFeature1034</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22cellist%20chasmal%20dappling%20coruscations%20diplomatically%20toxicological%20salvations%20headpins%20dubiousness%20bodings%20promulgates%20spanker%20nuncles%20tagboard%20powwowed%20flockier%20nauseousness%20unbrotherly%20flusher%20announces%20phoney%20approximated%20tunability%20maliciously%20aboding%20ionospheres%20flaggings%20ascertainment%20praises%20spiegels%20sporters%20salvagees%20bassists%20portentousness%20violinist%20wingspans%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1034">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">cellist chasmal dappling coruscations diplomatically toxicological salvations headpins dubiousness bodings promulgates spanker nuncles tagboard powwowed flockier nauseousness unbrotherly flusher announces phoney approximated tunability maliciously aboding ionospheres flaggings ascertainment praises spiegels sporters salvagees bassists portentousness violinist wingspans</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1034"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1034">ProductFeature1034</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22alerters%20birthstones%20implanted%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1034">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">alerters birthstones implanted</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1035"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1035">ProductFeature1035</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-07-20%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1035">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-07-20</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1035"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1035">ProductFeature1035</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1035"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1035"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1035">ProductFeature1035</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1035"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1035"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1035">ProductFeature1035</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22cataleptically%20buoyancies%20midlands%20embars%20calmed%20flayer%20unscrambles%20uncharged%20iridescent%20vituperates%20monikers%20replants%20ignitors%20underpinnings%20coheir%20leucocyte%20typified%20gymnastics%20recharts%20swarmers%20overstrike%20insister%20unfrequented%20unaesthetic%20inners%20exclaimed%20untypically%20cowboys%20glorying%20procurators%20scantier%20garbing%20scarfed%20secularize%20recoiler%20scripturally%20loftily%20bedcovers%20reefy%20equilibrates%20fatuousness%20teenful%20bellied%20bugged%20indefeasible%20foreswear%20brooded%20baggies%20gassed%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1035">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">cataleptically buoyancies midlands embars calmed flayer unscrambles uncharged iridescent vituperates monikers replants ignitors underpinnings coheir leucocyte typified gymnastics recharts swarmers overstrike insister unfrequented unaesthetic inners exclaimed untypically cowboys glorying procurators scantier garbing scarfed secularize recoiler scripturally loftily bedcovers reefy equilibrates fatuousness teenful bellied bugged indefeasible foreswear brooded baggies gassed</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1035"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1035">ProductFeature1035</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22hurrahed%20theatricality%20kohlrabies%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1035">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">hurrahed theatricality kohlrabies</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1036"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1036">ProductFeature1036</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-07-07%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1036">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-07-07</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1036"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1036">ProductFeature1036</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1036"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1036"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1036">ProductFeature1036</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1036"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1036"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1036">ProductFeature1036</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22miseducation%20deteriorated%20alkalinization%20sectaries%20angers%20bowling%20disassimilative%20responders%20repaginated%20quarriers%20wienies%20dissuades%20numerates%20shunpiked%20velvets%20wyomingite%20lovesick%20shorthorn%20parasitization%20outwit%20captured%20anesthetization%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1036">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">miseducation deteriorated alkalinization sectaries angers bowling disassimilative responders repaginated quarriers wienies dissuades numerates shunpiked velvets wyomingite lovesick shorthorn parasitization outwit captured anesthetization</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1036"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1036">ProductFeature1036</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22evenfalls%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1036">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">evenfalls</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1038"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1038">ProductFeature1038</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fdate"><abbr title="http://purl.org/dc/elements/1.1/date">date</abbr></a>
+            <a href="?object=%222000-07-11%22%5E%5Ehttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23date" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1038">"<span property="http://purl.org/dc/elements/1.1/date" datatype="http://www.w3.org/2001/XMLSchema#date">2000-07-11</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1038"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1038">ProductFeature1038</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2Fpublisher"><abbr title="http://purl.org/dc/elements/1.1/publisher">publisher</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FStandardizationInstitution1" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1038"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1" property="http://purl.org/dc/elements/1.1/publisher" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/StandardizationInstitution1">StandardizationInstitution1</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1038"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1038">ProductFeature1038</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23type"><abbr title="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">type</abbr></a>
+            <a href="?object=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Fvocabulary%2FProductFeature" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1038"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature" property="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/vocabulary/ProductFeature">ProductFeature</abbr></a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1038"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1038">ProductFeature1038</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23comment"><abbr title="http://www.w3.org/2000/01/rdf-schema#comment">comment</abbr></a>
+            <a href="?object=%22helping%20needily%20electrocute%20scrived%20troublers%20attractable%20antagonizes%20bobbins%20inactions%20lowermost%20suet%20prosthetist%20debatable%20timpanum%20subbreeds%20tumbleweeds%20yowed%20igniting%20cloggier%20standpat%20morning%20tinseling%20sheerness%20twistable%20denounces%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1038">"<span property="http://www.w3.org/2000/01/rdf-schema#comment" datatype="http://www.w3.org/2001/XMLSchema#string">helping needily electrocute scrived troublers attractable antagonizes bobbins inactions lowermost suet prosthetist debatable timpanum subbreeds tumbleweeds yowed igniting cloggier standpat morning tinseling sheerness twistable denounces</span>"</a>.
+          </li>
+    <li>
+      <a href="?subject=http%3A%2F%2Fwww4.wiwiss.fu-berlin.de%2Fbizer%2Fbsbm%2Fv01%2Finstances%2FProductFeature1038"><abbr title="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1038">ProductFeature1038</abbr></a>
+      <a href="?predicate=http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23label"><abbr title="http://www.w3.org/2000/01/rdf-schema#label">label</abbr></a>
+            <a href="?object=%22tuning%22" resource="http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/ProductFeature1038">"<span property="http://www.w3.org/2000/01/rdf-schema#label" datatype="http://www.w3.org/2001/XMLSchema#string">tuning</span>"</a>.
+          </li>
+</ul>
+
+  <ul class="links">
+        <li><a href="http://localhost:3000/scale1000?page=1" rel="first" property="hydra:first">first</a></li>
+    <li><a href="http://localhost:3000/scale1000?page=1" rel="prev" property="hydra:previous">previous</a></li>
+            <li><a href="http://localhost:3000/scale1000?page=3" rel="next" property="hydra:next">next</a></li>
+      </ul>
+
+
+
+
+
+<aside id="about">
+  <h3>About BSBM1000</h3>
+  <ul>
+    <li><a href="http://localhost:3000/scale1000#dataset" target="_blank">BSBM1000</a> – BSBM1000</li>
+    
+    
+  </ul>
+</aside>
+
+
+
+  </main>
+  <footer>
+    <p>
+      Powered by a <a href="https://github.com/LinkedDataFragments/Server.js" target="_blank">Linked Data Fragments Server</a>
+      ©2013–2018 Ghent University – imec
+    </p>
+  </footer>
+</body>
+</html>
