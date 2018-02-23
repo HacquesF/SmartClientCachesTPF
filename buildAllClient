@@ -1,0 +1,2 @@
+cd ClientV2.js
+docker build -t ldf-allclient .
