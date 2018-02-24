@@ -3,6 +3,9 @@
 LOG=$(docker exec -it squid cat /var/log/squid3/access.log)
 CONF=$(docker exec -it squid cat /etc/squid3/squid.conf)
 FILE="res.log"
+#Temp while waiting for the big wrap
+touch $FILE
+
 TYPE=`echo "$CONF" | grep cache_replacement_policy | cut -c26- | sed 's/.$//'`
 #Cache size
 SIZE=`echo "$CONF" | grep cache_mem | tr -dc '0-9'`
@@ -13,4 +16,4 @@ MISS=`echo "$LOG" | grep TCP.*_MISS | wc -l`
 #All intercepted request
 TOTAL=`echo "$LOG" | wc -l`
 RES="$TYPE $SIZE $HIT $MISS $TOTAL"
-echo "$RES" > $FILE
+echo "$RES" >> $FILE

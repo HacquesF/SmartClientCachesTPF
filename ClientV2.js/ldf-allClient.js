@@ -1,33 +1,45 @@
 var fs = require('fs');
 var ldf = require('ldf-client');
-var fragmentsClient = new ldf.FragmentsClient(process.argv[2]);
 ldf.Logger.setLevel('warning');
-//fragmentsClient._cache = new Cache({ max: 0 });
 
 //Read queries file
-var file = fs.readFileSync(process.argv[3]);
+const server = process.argv[2]
+var file = fs.readFileSync(process.argv[3], 'utf8');
 var queries = [];
 queries = JSON.parse(file);
 var nbQueries = process.argv[4];
 
-function getResult(value) {
+queries = queries.slice(1, 2)
+
+function execute(query) {
    return new Promise(resolve => {
       //var results = new ldf.SparqlIterator(queries[value], { fragmentsClient: fragmentsClient })
-      resolve(new ldf.SparqlIterator(queries[value], { fragmentsClient: fragmentsClient }))
+	var fragmentsClient = new ldf.FragmentsClient(server);
+	var result = new ldf.SparqlIterator(query, { fragmentsClient: fragmentsClient })
+	result.on('data', (res) => {
+		//
+	})
+	result.on('end', () => {
+		resolve()
+	})
    })
 }
-function loop(value){
-   
-      getResult(value).then(() => {
-         if (value < nbQueries){
-            console.log(value)
-            return loop(value+1)
-         }else{
-            console.log('done')
-         }
-      })
-}
-loop(0)
+
+
+queries.reduce((acc, query) => acc.then((globalResult) => {
+	return new Promise((resolve, reject) => {
+		return execute(query).then((res) => {
+			return Promise.resolve([...globalResult, res])
+		})
+	})
+	//	return execute(query)
+}), Promise.resolve([])).then((finalResult) => {
+	console.log('Finished', finalResult)
+	
+})
+
+
+
 //      var results = new ldf.SparqlIterator(queries[value], { fragmentsClient: fragmentsClient });
 
 
