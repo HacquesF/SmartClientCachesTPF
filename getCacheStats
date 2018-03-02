@@ -2,7 +2,7 @@
 
 LOG=$(docker exec -it squid cat /var/log/squid3/access.log)
 CONF=$(docker exec -it squid cat /etc/squid3/squid.conf)
-FILE="res.log"
+FILE="tmp/res.log"
 #Temp while waiting for the big wrap
 touch $FILE
 

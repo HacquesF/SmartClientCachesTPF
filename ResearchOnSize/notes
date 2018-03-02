@@ -17,3 +17,6 @@ That would mean 375 000kB for the whole database.
 20%  56 250     75 000     112 500
 25%  70 312.5   93 750     140 625
 30%  84 375     112 500    168 750
+
+With my average page size, the 100M triples in iswc2014 makes for 100GB of HTTP pages. The HTTP cache used in the experiment got 15GB RAM, so they could cache 15% of the dataset.
+Quote from the paper: "It caches http requests for a maximum of 5 minutes."

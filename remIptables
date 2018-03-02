@@ -1,0 +1,1 @@
+sudo iptables -t nat -D PREROUTING -p tcp --dport 3000 -j REDIRECT --to 3129 -w
