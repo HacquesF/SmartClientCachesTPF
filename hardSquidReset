@@ -1,2 +1,2 @@
-docker kill squid
+docker rm -f squid
 ./dockSquid

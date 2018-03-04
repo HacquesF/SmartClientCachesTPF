@@ -8,6 +8,7 @@
 
 #Output file
 FILE="tmp/res.log"
+rm $FILE
 touch $FILE
 
 #Start the server
@@ -34,13 +35,12 @@ do
    #Read conf file
    CONF=$(docker exec -it squid cat /etc/squid3/squid.conf)
    POLICY=`echo "$CONF" | grep cache_replacement_policy | cut -c26- | sed 's/.$//'`
-   echo $POLICY
    POLICY=${POLICY// /-}
    echo "$POLICY"
    SIZE=`echo "$CONF" | grep cache_mem | tr -dc '0-9'`
    
    #Loop the runs
-   for run in `seq 0 4`;
+   for run in `seq 0 2`;
    do
       #Run the client
       ./dockClient
@@ -60,7 +60,7 @@ do
       ./hardSquidReset
    done
    #Reset Squid to erase the cache
-   docker kill squid
+   docker rm -f squid
    #Write the average hit rate for that conf
    echo "$POLICY $SIZE $HITAVG" >> $FILE
 done
@@ -69,8 +69,8 @@ done
 julia barHit.jl $FILE
 
 #Stopping the server
-docker stop ldf-server squid
+docker stop ldf-server
 
 #Clean up
 rm squid.conf
-rm $FILE
+#rm $FILE

@@ -5,4 +5,4 @@
 
 #docker run -it --rm -v $(pwd)/test2.sparql:/tmp/test2.sparql ldf-client http://fragments.dbpedia.org/2015/en -f /tmp/test2.sparql
 
-docker run -it --name ldf-allclient --rm -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://172.17.0.2:3000/scale1000 /tmp/queries.json -e 4 -s 0
+docker run -it --name ldf-allclient --rm -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://172.17.0.1:3000/scale1000 /tmp/queries.json -e 49 -s 0
