@@ -1,8 +1,12 @@
+#!/bin/bash
 #docker run -it --rm ldf-client http://192.168.1.100:3000/scale1000 'SELECT * WHERE { ?s ?p ?o } LIMIT 10'
 
 #docker run -it --rm -v $(pwd)/test.sparql:/tmp/test.sparql ldf-client http://192.168.1.100:3000/scale1000 -f /tmp/test.sparql
 #docker run -it --rm ldf-client http://fragments.dbpedia.org/2015/en 'SELECT * WHERE { ?s ?p ?o } LIMIT 10'
 
 #docker run -it --rm -v $(pwd)/test2.sparql:/tmp/test2.sparql ldf-client http://fragments.dbpedia.org/2015/en -f /tmp/test2.sparql
+#Catch the address one time in the script, not every time
+SERVIP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ldf-server)
 
-docker run -it --name ldf-allclient --rm -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://172.17.0.1:3000/scale1000 /tmp/queries.json -e 49 -s 0
+#Removed -it
+docker run --name ldf-allclient --rm -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 /tmp/queries.json -e 50 -s 0

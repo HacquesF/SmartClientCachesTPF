@@ -3,7 +3,7 @@
 #                    - number of runs per config
 #                    - directory with squid conf (Special case for one conf?)
 #                    - Server address instead of starting mine
-#     Set echoes to know he's at (also kindly ask for sudo permission for iptables)
+#     Set echoes to know where he's at (also kindly ask for sudo permission for iptables)
 #     Probably something else, look into it
 
 #Output file
@@ -15,7 +15,7 @@ touch $FILE
 ./dockServer
 
 #Setting the iptables
-./setIptables
+#sudo ./setIptables
 
 POLICY=""
 SIZE=""
@@ -33,12 +33,12 @@ do
    
    #Get policy and size initialised for this run
    #Read conf file
-   CONF=$(docker exec -it squid cat /etc/squid3/squid.conf)
-   POLICY=`echo "$CONF" | grep cache_replacement_policy | cut -c26- | sed 's/.$//'`
+   CONF=$(docker exec squid cat /etc/squid3/squid.conf)
+   #Find why I had  | sed 's/.$//' and now I don't want it
+   POLICY=`echo "$CONF" | grep cache_replacement_policy | cut -c26-`
    POLICY=${POLICY// /-}
-   echo "$POLICY"
    SIZE=`echo "$CONF" | grep cache_mem | tr -dc '0-9'`
-   
+   echo "$POLICY : $SIZE"
    #Loop the runs
    for run in `seq 0 2`;
    do
@@ -46,7 +46,7 @@ do
       ./dockClient
       
       #Read cache log
-      LOG=$(docker exec -it squid cat /var/log/squid3/access.log)
+      LOG=$(docker exec squid cat /var/log/squid3/access.log)
       
       #Compute the new hit average
       HITCUR=`echo "$LOG" | grep TCP.*_HIT | wc -l`
