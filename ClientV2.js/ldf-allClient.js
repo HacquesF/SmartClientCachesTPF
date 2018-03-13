@@ -54,6 +54,3 @@ queries.reduce((acc, query) => acc.then((globalResult) => {
 //      var results = new ldf.SparqlIterator(queries[value], { fragmentsClient: fragmentsClient });
 
 
-//results.on('data', function (result) { console.log(result); });
-//source: https://stackoverflow.com/questions/17217736/while-loop-with-promises#17238793
-
