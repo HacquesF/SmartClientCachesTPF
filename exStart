@@ -51,14 +51,15 @@ do
       LOG=$(docker exec squid cat /var/log/squid3/access.log)
       
       #Get reduced hit log with numbers and removed one time occurences
-      LOGHITCUR=$(grep _HIT "$LOG" | sed 's/^.*GET //' | sed 's/ - HIER_.*$//' | sort | uniq -cd)
+      LOGHITCUR=`echo "$LOG" | grep TCP.*_HIT | sed 's/^.*GET //' | sed 's/ - HIER_.*$//' | sort | uniq -cd`
       #Save the cache hit
       if [ $run -eq 0 ]
       then
+#         echo "$LOG" > "tmp/log/all-$POLICY-$SIZE.log"
          echo "$LOGHITCUR" | sort -bg | tail -n 20 > "tmp/log/$POLICY-$SIZE.log"
-      else
-         #Save page to save space
-         diff -c "tmp/log/$POLICY-$SIZE.log" $(echo "$LOGHITCUR" | sort -bg | tail -n 20) > "tmp/log/$POLICY-$SIZE-$run.patch"
+#      else
+#         #Save page to save space
+#         diff -c "tmp/log/$POLICY-$SIZE.log" `echo "$LOGHITCUR" | sort -bg | tail -n 20` > "tmp/log/$POLICY-$SIZE-$run.patch"
       fi
       
       #Compute the new hit average
@@ -70,8 +71,12 @@ do
       HITAVG=$(echo "scale=2; ($HITAVG*$run+$HITCUR)/($run+1)" | bc)
       
       #Compute the new maximum hit possible
-      HITPOSSCUR=`echo "$LOGHITCUR" | grep -o "^ *[0-9]*" | sed 's/^ *//' | awk '{s+=$1} END {print s}'`
-      HITPOSSCUR=$(echo "scale=2; ($HITPOSSCUR/$TOT)*100" | bc)
+         #Clean Log and only keep duplicate
+      HITPOSSCUR=`echo "$LOG" | sed 's/^.*GET //' | sed 's/ - HIER_.*$//' | sort | uniq -cd`
+      NB=`echo "$HITPOSSCUR" | wc -l`
+         #Extract and add all the numbers
+      HITPOSSCUR=`echo "$HITPOSSCUR" | grep -o "^ *[0-9]*" | sed 's/^ *//' | awk '{s+=$1} END {print s}'`
+      HITPOSSCUR=$(echo "scale=2; (($HITPOSSCUR-$NB)/$TOT)*100" | bc)
       HITPOSS=$(echo "scale=2; ($HITPOSS*$run+$HITPOSSCUR)/($run+1)" | bc)
       echo "Maximum possible hit percent : $HITPOSS"
       
@@ -87,7 +92,7 @@ do
    #Reset Squid to erase the cache
    docker rm -f squid
    #Write the average hit rate for that conf
-   echo "$POLICY $SIZE $HITAVG" >> $FILE
+   echo "$POLICY $SIZE $HITAVG $HITPOSS $SCALEHIT" >> $FILE
 done
 
 #Making the graph
@@ -97,6 +102,6 @@ julia barHit.jl $FILE
 docker stop ldf-server
 
 #Clean up
-./remIptables
+#./remIptables
 rm squid.conf
 #rm $FILE
