@@ -96,7 +96,7 @@ do
 done
 
 #Making the graph
-julia barHit.jl $FILE
+julia multiPlot.jl $FILE
 
 #Stopping the server
 docker stop ldf-server
