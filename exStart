@@ -81,7 +81,7 @@ do
       echo "Maximum possible hit percent : $HITPOSS"
       
       #Compute the new scale hit percent of total hit (start page)
-      SCALEHITCUR=`echo "$LOGHITCUR" | grep "scale1000$" | grep -o "^ *[0-9]*"`
+      SCALEHITCUR=`echo "$LOGHITCUR" | grep "scale1000$" | grep -o "^ *[0-9]*" | sed 's/^ *//'`
       SCALEHITCUR=$(echo "scale=2; ($SCALEHITCUR/$HITCURTOT)*100" | bc)
       SCALEHIT=$(echo "scale=2; ($SCALEHIT*$run+$SCALEHITCUR)/($run+1)" | bc)
       echo "Scale hit : $SCALEHIT"
@@ -91,7 +91,7 @@ do
    done
    #Reset Squid to erase the cache
    docker rm -f squid
-   #Write the average hit rate for that conf
+   #Write the stats for that conf
    echo "$POLICY $SIZE $HITAVG $HITPOSS $SCALEHIT" >> $FILE
 done
 
