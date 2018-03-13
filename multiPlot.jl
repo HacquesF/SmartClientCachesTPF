@@ -23,8 +23,7 @@ data[:Max] = file[:,4]
 data[:Scale] = file[:,5]
 
 #Creating the Hit plot
-phit = plot(data,layer(x="Size",y="Max", color="Policy", Geom.line),
-                 layer(x="Size",y="Hit",color="Policy",Geom.bar(position=:dodge)))
+phit = plot(data,layer(x="Size",y="Hit",color="Policy",Geom.bar(position=:dodge)))
 imgHit = SVG("tmp/hit.svg")
 draw(imgHit,phit)
 
