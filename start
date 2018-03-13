@@ -47,7 +47,8 @@ do
       
       #Read cache log
       LOG=$(docker exec squid cat /var/log/squid3/access.log)
-      
+      #Save too much, remove after test
+      #echo "$LOG" > "tmp/curLog/$POLICY-$SIZE-$run.log"
       #Compute the new hit average
       HITCUR=`echo "$LOG" | grep TCP.*_HIT | wc -l`
       TOT=`echo "$LOG" | wc -l`

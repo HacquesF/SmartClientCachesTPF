@@ -1,0 +1,102 @@
+#!/bin/bash
+
+#Output file
+FILE="tmp/res.log"
+rm $FILE
+touch $FILE
+
+#Start the server
+./dockServer
+
+#Setting the iptables
+#sudo ./setIptables
+
+POLICY=""
+SIZE=""
+CONF=""
+HITCUR=0
+HITPOSSCUR=0
+SCALEHITCUR=0
+LOGHITCUR=""
+HITAVG=0
+TOT=0
+HITPOSS=0
+SCALEHIT=0
+HITCURTOT=0
+#Loop between all squid conf files
+for squidC in `ls conf` ;
+do
+   #Select the good conf
+   rm squid.conf
+   cp conf/$squidC squid.conf
+   
+   #Start squid
+   ./dockSquid
+   
+   #Get policy and size initialised for this run
+   #Read conf file
+   CONF=$(docker exec squid cat /etc/squid3/squid.conf)
+   #Find why I had  | sed 's/.$//' and now I don't want it
+   POLICY=`echo "$CONF" | grep cache_replacement_policy | cut -c26-`
+   POLICY=${POLICY// /-}
+   SIZE=`echo "$CONF" | grep cache_mem | tr -dc '0-9'`
+   echo "$POLICY : $SIZE"
+   #Loop the runs
+   for run in `seq 0 2`;
+   do
+      #Run the client
+      ./dockClient
+      
+      #Read cache log
+      LOG=$(docker exec squid cat /var/log/squid3/access.log)
+      
+      #Get reduced hit log with numbers and removed one time occurences
+      LOGHITCUR=$(grep _HIT "$LOG" | sed 's/^.*GET //' | sed 's/ - HIER_.*$//' | sort | uniq -cd)
+      #Save the cache hit
+      if [ $run -eq 0 ]
+      then
+         echo "$LOGHITCUR" | sort -bg | tail -n 20 > "tmp/log/$POLICY-$SIZE.log"
+      else
+         #Save page to save space
+         diff -c "tmp/log/$POLICY-$SIZE.log" $(echo "$LOGHITCUR" | sort -bg | tail -n 20) > "tmp/log/$POLICY-$SIZE-$run.patch"
+      fi
+      
+      #Compute the new hit average
+      HITCURTOT=`echo "$LOG" | grep TCP.*_HIT | wc -l`
+      TOT=`echo "$LOG" | wc -l`
+      echo "Hitcur for run $run : $HITCURTOT, total is $TOT"
+      HITCUR=$(echo "scale=2; ($HITCURTOT/$TOT)*100" | bc)
+      echo "Percentage calculated : $HITCUR"
+      HITAVG=$(echo "scale=2; ($HITAVG*$run+$HITCUR)/($run+1)" | bc)
+      
+      #Compute the new maximum hit possible
+      HITPOSSCUR=`echo "$LOGHITCUR" | grep -o "^ *[0-9]*" | sed 's/^ *//' | awk '{s+=$1} END {print s}'`
+      HITPOSSCUR=$(echo "scale=2; ($HITPOSSCUR/$TOT)*100" | bc)
+      HITPOSS=$(echo "scale=2; ($HITPOSS*$run+$HITPOSSCUR)/($run+1)" | bc)
+      echo "Maximum possible hit percent : $HITPOSS"
+      
+      #Compute the new scale hit percent of total hit (start page)
+      SCALEHITCUR=`echo "$LOGHITCUR" | grep "scale1000$" | grep -o "^ *[0-9]*"`
+      SCALEHITCUR=$(echo "scale=2; ($SCALEHITCUR/$HITCURTOT)*100" | bc)
+      SCALEHIT=$(echo "scale=2; ($SCALEHIT*$run+$SCALEHITCUR)/($run+1)" | bc)
+      echo "Scale hit : $SCALEHIT"
+      
+      #Reset Squid to erase the cache
+      ./hardSquidReset
+   done
+   #Reset Squid to erase the cache
+   docker rm -f squid
+   #Write the average hit rate for that conf
+   echo "$POLICY $SIZE $HITAVG" >> $FILE
+done
+
+#Making the graph
+julia barHit.jl $FILE
+
+#Stopping the server
+docker stop ldf-server
+
+#Clean up
+./remIptables
+rm squid.conf
+#rm $FILE
