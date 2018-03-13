@@ -1,8 +1,9 @@
 #!/bin/bash
 if [ "$1" = "-c" ]; then
    #Only cache hit
-   docker exec -it squid grep _HIT /var/log/squid3/access.log | sed 's/^.*GET //' | sed 's/ - HIER_.*$//' | sort | uniq -cd | sort -r
+   grep _HIT "$2" | sed 's/^.*GET //' | sed 's/ - HIER_.*$//' | sort | uniq -cd | sort -bg | tail -n 20
 else
    #Every requests
-   docker exec -it squid sed 's/^.*GET //' /var/log/squid3/access.log | sed 's/ - HIER_.*$//' | sort | uniq -cd | sort -r
+   sed 's/^.*GET //' "$1" | sed 's/ - HIER_.*$//' | sort | uniq -cd | sort -bg | tail -n 20
 fi
+#Getting numbers only grep -o "^ *[0-9]*" sorted.log | sed 's/^ *//'
