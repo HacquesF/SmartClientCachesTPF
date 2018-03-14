@@ -76,18 +76,22 @@ do
       #Get the number of hits
       HITCURTOT=`echo "$LOG" | grep TCP.*_HIT | wc -l`
       
-      #Save the cache hit
+      #Get the number of http call
+      TOT=`echo "$LOG" | wc -l`
+      echo "Hitcur for run $run : $HITCURTOT, total is $TOT"
+      
+      #Save the cache hit, also save most common page to compare
       # Save all the runs because first tests showed big difference
 #      if [ $run -eq 0 ]
 #      then
 #         echo "$LOG" > "tmp/log/all-$POLICY-$SIZE.log"
-         echo "$HITCURTOT : Number of hit" > "tmp/log/$POLICY-$SIZE-$run.log"
-         echo "$LOGHITCUR" | sort -bg | tail -n 10 >> "tmp/log/$POLICY-$SIZE-$run.log"
+            #Cache
+         echo "$HITCURTOT : Number of hit" > "tmp/log/Cache-$POLICY-$SIZE-$run.log"
+         echo "$LOGHITCUR" | sort -bg | tail -n 10 >> "tmp/log/Cache-$POLICY-$SIZE-$run.log"
+            #All
+         echo "$TOT : Number of hit" > "tmp/log/All-$POLICY-$SIZE-$run.log"
+         echo "$LOG" | sort -bg | tail -n 10 >> "tmp/log/All-$POLICY-$SIZE-$run.log"
 #      fi
-      
-      #Get the number of http call
-      TOT=`echo "$LOG" | wc -l`
-      echo "Hitcur for run $run : $HITCURTOT, total is $TOT"
       
       #Compute the hit rate
       HITCUR=$(echo "scale=4; ($HITCURTOT*100/$TOT)" | bc)
