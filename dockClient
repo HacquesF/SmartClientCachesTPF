@@ -9,4 +9,4 @@
 SERVIP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ldf-server)
 
 #Removed -it
-docker run --name ldf-allclient --rm -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 /tmp/queries.json -e 3 -s 0
+docker run --name ldf-allclient --rm -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 /tmp/queries.json -e 100 -s 0

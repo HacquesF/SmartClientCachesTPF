@@ -57,33 +57,29 @@ do
       then
 #         echo "$LOG" > "tmp/log/all-$POLICY-$SIZE.log"
          echo "$LOGHITCUR" | sort -bg | tail -n 20 > "tmp/log/$POLICY-$SIZE.log"
-#      else
-#         #Save page to save space
-#         diff -c "tmp/log/$POLICY-$SIZE.log" `echo "$LOGHITCUR" | sort -bg | tail -n 20` > "tmp/log/$POLICY-$SIZE-$run.patch"
       fi
       
       #Compute the new hit average
       HITCURTOT=`echo "$LOG" | grep TCP.*_HIT | wc -l`
       TOT=`echo "$LOG" | wc -l`
       echo "Hitcur for run $run : $HITCURTOT, total is $TOT"
-      HITCUR=$(echo "scale=2; ($HITCURTOT/$TOT)*100" | bc)
+      HITCUR=$(echo "scale=4; ($HITCURTOT*100/$TOT)" | bc)
       echo "Percentage calculated : $HITCUR"
-      HITAVG=$(echo "scale=2; ($HITAVG*$run+$HITCUR)/($run+1)" | bc)
+      HITAVG=$(echo "scale=4; ($HITAVG*$run+$HITCUR)/($run+1)" | bc)
       
       #Compute the new maximum hit possible
          #Clean Log and only keep duplicate
       HITPOSSCUR=`echo "$LOG" | sed 's/^.*GET //' | sed 's/ - HIER_.*$//' | sort | uniq -cd`
-      NB=`echo "$HITPOSSCUR" | wc -l`
          #Extract and add all the numbers
-      HITPOSSCUR=`echo "$HITPOSSCUR" | grep -o "^ *[0-9]*" | sed 's/^ *//' | awk '{s+=$1} END {print s}'`
-      HITPOSSCUR=$(echo "scale=2; (($HITPOSSCUR-$NB)/$TOT)*100" | bc)
-      HITPOSS=$(echo "scale=2; ($HITPOSS*$run+$HITPOSSCUR)/($run+1)" | bc)
+      HITPOSSCUR=`echo "$HITPOSSCUR" | grep -o "^ *[0-9]*" | sed 's/^ *//' | awk '{s+=$1-1} END {print s}'`
+      HITPOSSCUR=$(echo "scale=4; ($HITPOSSCUR*100/$TOT)" | bc)
+      HITPOSS=$(echo "scale=4; ($HITPOSS*$run+$HITPOSSCUR)/($run+1)" | bc)
       echo "Maximum possible hit percent : $HITPOSS"
       
       #Compute the new scale hit percent of total hit (start page)
       SCALEHITCUR=`echo "$LOGHITCUR" | grep "scale1000$" | grep -o "^ *[0-9]*" | sed 's/^ *//'`
-      SCALEHITCUR=$(echo "scale=2; ($SCALEHITCUR/$HITCURTOT)*100" | bc)
-      SCALEHIT=$(echo "scale=2; ($SCALEHIT*$run+$SCALEHITCUR)/($run+1)" | bc)
+      SCALEHITCUR=$(echo "scale=4; ($SCALEHITCUR*100/$HITCURTOT)" | bc)
+      SCALEHIT=$(echo "scale=4; ($SCALEHIT*$run+$SCALEHITCUR)/($run+1)" | bc)
       echo "Scale hit : $SCALEHIT"
       
       #Reset Squid to erase the cache

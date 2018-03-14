@@ -19,14 +19,15 @@ data[:Size] = file[:,2]
 data[:Hit] = file[:,3]
 sort!(data,cols=[:Size])
 data[:Size] = [repr(x) for x in data[:Size]]
-data[:Max] = file[:,4]
+#data[:Max] = file[:,4]
 data[:Scale] = file[:,5]
 
+Max = mean(file[:,4])
 #Creating the Hit plot
-phit = plot(data,layer(x="Size",y="Hit",color="Policy",Geom.bar(position=:dodge)))
+phit = plot(data,x="Size",y="Hit",color="Policy",yintercept=[Max],Geom.bar(position=:dodge),Geom.hline(style=:dot),style(default_color=Colors.RGBA(0.5, 0, 0, 1),bar_spacing=0.15cm))
 imgHit = SVG("tmp/hit.svg")
 draw(imgHit,phit)
 
-pScale = plot(data,x="Size",y="Scale",color="Policy",Geom.bar(position=:dodge))
+pScale = plot(data,x="Size",y="Scale",color="Policy",Geom.bar(position=:dodge),style(bar_spacing=0.15cm))
 imgScale = SVG("tmp/scale.svg")
 draw(imgScale,pScale)
