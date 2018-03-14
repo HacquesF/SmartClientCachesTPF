@@ -81,7 +81,7 @@ do
 #      if [ $run -eq 0 ]
 #      then
 #         echo "$LOG" > "tmp/log/all-$POLICY-$SIZE.log"
-         echo "$HITCURTOT : Number of hit"
+         echo "$HITCURTOT : Number of hit" > "tmp/log/$POLICY-$SIZE-$run.log"
          echo "$LOGHITCUR" | sort -bg | tail -n 10 >> "tmp/log/$POLICY-$SIZE-$run.log"
 #      fi
       
