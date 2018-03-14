@@ -1,9 +1,0 @@
-#!/bin/bash
-if [ "$1" = "-c" ]; then
-   #Only cache hit
-   grep _HIT "$2" | sed 's/^.*GET //' | sed 's/ - HIER_.*$//' | sort | uniq -cd | sort -bg | tail -n 20
-else
-   #Every requests
-   sed 's/^.*GET //' "$1" | sed 's/ - HIER_.*$//' | sort | uniq -cd | sort -bg | tail -n 20
-fi
-#Getting numbers only grep -o "^ *[0-9]*" sorted.log | sed 's/^ *//'

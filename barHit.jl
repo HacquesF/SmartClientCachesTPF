@@ -20,7 +20,8 @@ data[:Hit] = file[:,3]
 sort!(data,cols=[:Size])
 data[:Size] = [repr(x) for x in data[:Size]]
 
-#Creating the plot
-p = plot(data,x="Size",y="Hit",color="Policy",Geom.bar(position=:dodge))
-img = SVG("tmp/plot.svg")
-draw(img,p)
+Max = mean(file[:,4])
+#Creating the Hit plot
+phit = plot(data,x="Size",y="Hit",color="Policy",yintercept=[Max],Geom.bar(position=:dodge),Geom.hline(style=:dot),style(default_color=Colors.RGBA(0.5, 0, 0, 1),bar_spacing=0.15cm))
+imgHit = SVG("tmp/hit.svg")
+draw(imgHit,phit)

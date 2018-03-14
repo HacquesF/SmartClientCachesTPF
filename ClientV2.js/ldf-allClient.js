@@ -34,17 +34,17 @@ function execute(query) {
    })
 }
 
-process.stdout.write("[");
+//process.stdout.write("[");
 queries.reduce((acc, query) => acc.then((globalResult) => {
 //	return new Promise((resolve, reject) => {
 //		return execute(query).then((res) => {
 //			return Promise.resolve([...globalResult, res])
 //		})
 //	})
-   process.stdout.write("#");
+//   process.stdout.write("#");
 	return execute(query)
 }), Promise.resolve([])).then((finalResult) => {
-   process.stdout.write("]\n");
+//   process.stdout.write("]\n");
 	console.log('Finished', finalResult)
 	
 })

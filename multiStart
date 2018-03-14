@@ -1,16 +1,29 @@
 #!/bin/bash
+#Execute all the squid configuration files from conf with argument 1 querie and 1 client
+#It will output in tmp/log the most hit pages, and a bar blot with the hit rates for each conf
+if [ ! $# -eq 2 ]
+then
+   echo "Needs exactly 2 argument. Usage: exStart NumberOfClients NumberOfQueries"
+   exit 1
+fi
+NBQUERIES=$1
+NBCLIENT=$2
 
-#Output file
+#Output file for plot
 FILE="tmp/res.log"
 rm $FILE
 touch $FILE
 
 #Start the server
 ./dockServer
+#Get the server ip
+SERVIP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ldf-server)
 
-#Setting the iptables
-#sudo ./setIptables
+##Need to set them up away to avoid logging sudo on this terminal
+###Setting the iptables
+###sudo ./setIptables
 
+#Variable used
 POLICY=""
 SIZE=""
 CONF=""
@@ -21,8 +34,8 @@ LOGHITCUR=""
 HITAVG=0
 TOT=0
 HITPOSS=0
-SCALEHIT=0
 HITCURTOT=0
+
 #Loop between all squid conf files
 for squidC in `ls conf` ;
 do
@@ -36,33 +49,47 @@ do
    #Get policy and size initialised for this run
    #Read conf file
    CONF=$(docker exec squid cat /etc/squid3/squid.conf)
-   #Find why I had  | sed 's/.$//' and now I don't want it
+   #Extract policy
    POLICY=`echo "$CONF" | grep cache_replacement_policy | cut -c26-`
    POLICY=${POLICY// /-}
+   #Extract size
    SIZE=`echo "$CONF" | grep cache_mem | tr -dc '0-9'`
    echo "$POLICY : $SIZE"
    #Loop the runs
    for run in `seq 0 2`;
    do
-      #Run the client
-      ./dockClient
+      #Run clients
+      for client in `seq 1 $NBCLIENT`;
+      do
+         #Exec them in background so they run together
+         ./dockClient $SERVIP $client $NBQUERIES &
+      done
+      #Wait for everyone to come back
+      wait
       
       #Read cache log
       LOG=$(docker exec squid cat /var/log/squid3/access.log)
       
       #Get reduced hit log with numbers and removed one time occurences
       LOGHITCUR=`echo "$LOG" | grep TCP.*_HIT | sed 's/^.*GET //' | sed 's/ - HIER_.*$//' | sort | uniq -cd`
-      #Save the cache hit
-      if [ $run -eq 0 ]
-      then
-#         echo "$LOG" > "tmp/log/all-$POLICY-$SIZE.log"
-         echo "$LOGHITCUR" | sort -bg | tail -n 20 > "tmp/log/$POLICY-$SIZE.log"
-      fi
       
-      #Compute the new hit average
+      #Get the number of hits
       HITCURTOT=`echo "$LOG" | grep TCP.*_HIT | wc -l`
+      
+      #Save the cache hit
+      # Save all the runs because first tests showed big difference
+#      if [ $run -eq 0 ]
+#      then
+#         echo "$LOG" > "tmp/log/all-$POLICY-$SIZE.log"
+         echo "$HITCURTOT : Number of hit"
+         echo "$LOGHITCUR" | sort -bg | tail -n 10 >> "tmp/log/$POLICY-$SIZE-$run.log"
+#      fi
+      
+      #Get the number of http call
       TOT=`echo "$LOG" | wc -l`
       echo "Hitcur for run $run : $HITCURTOT, total is $TOT"
+      
+      #Compute the hit rate
       HITCUR=$(echo "scale=4; ($HITCURTOT*100/$TOT)" | bc)
       echo "Percentage calculated : $HITCUR"
       HITAVG=$(echo "scale=4; ($HITAVG*$run+$HITCUR)/($run+1)" | bc)
@@ -76,11 +103,12 @@ do
       HITPOSS=$(echo "scale=4; ($HITPOSS*$run+$HITPOSSCUR)/($run+1)" | bc)
       echo "Maximum possible hit percent : $HITPOSS"
       
-      #Compute the new scale hit percent of total hit (start page)
-      SCALEHITCUR=`echo "$LOGHITCUR" | grep "scale1000$" | grep -o "^ *[0-9]*" | sed 's/^ *//'`
-      SCALEHITCUR=$(echo "scale=4; ($SCALEHITCUR*100/$HITCURTOT)" | bc)
-      SCALEHIT=$(echo "scale=4; ($SCALEHIT*$run+$SCALEHITCUR)/($run+1)" | bc)
-      echo "Scale hit : $SCALEHIT"
+      #Useless because very low
+#      #Compute the new scale hit percent of total hit (start page)
+#      SCALEHITCUR=`echo "$LOGHITCUR" | grep "scale1000$" | grep -o "^ *[0-9]*" | sed 's/^ *//'`
+#      SCALEHITCUR=$(echo "scale=4; ($SCALEHITCUR*100/$HITCURTOT)" | bc)
+#      SCALEHIT=$(echo "scale=4; ($SCALEHIT*$run+$SCALEHITCUR)/($run+1)" | bc)
+#      echo "Scale hit : $SCALEHIT"
       
       #Reset Squid to erase the cache
       ./hardSquidReset
@@ -88,14 +116,14 @@ do
    #Reset Squid to erase the cache
    docker rm -f squid
    #Write the stats for that conf
-   echo "$POLICY $SIZE $HITAVG $HITPOSS $SCALEHIT" >> $FILE
+   echo "$POLICY $SIZE $HITAVG $HITPOSS" >> $FILE
 done
 
 #Making the graph
-julia multiPlot.jl $FILE
+julia barHit.jl $FILE
 
 #Stopping the server
-docker stop ldf-server
+docker rm -f ldf-server
 
 #Clean up
 #./remIptables
