@@ -6,8 +6,8 @@ then
    echo "Needs exactly 2 argument. Usage: exStart NumberOfClients NumberOfQueries"
    exit 1
 fi
-NBQUERIES=$1
-NBCLIENT=$2
+NBQUERIES=$2
+NBCLIENT=$1
 
 #Output file for plot
 FILE="tmp/res.log"

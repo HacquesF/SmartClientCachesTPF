@@ -2,3 +2,4 @@ zip
 node_modules
 tmp
 conf
+squid.conf
