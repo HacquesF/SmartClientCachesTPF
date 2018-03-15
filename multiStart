@@ -50,7 +50,7 @@ do
    #Read conf file
    CONF=$(docker exec squid cat /etc/squid3/squid.conf)
    #Extract policy
-   POLICY=`echo "$CONF" | grep cache_replacement_policy | cut -c26-`
+   POLICY=`echo "$CONF" | grep memory_replacement_policy | cut -c27-`
    POLICY=${POLICY// /-}
    #Extract size
    SIZE=`echo "$CONF" | grep cache_mem | tr -dc '0-9'`
