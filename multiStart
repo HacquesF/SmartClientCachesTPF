@@ -90,7 +90,7 @@ do
          echo "$LOGHITCUR" | sort -bg | tail -n 10 >> "tmp/log/Cache-$POLICY-$SIZE-$run.log"
             #All
          echo "$TOT : Number of hit" > "tmp/log/All-$POLICY-$SIZE-$run.log"
-         echo "$LOG" | sort -bg | tail -n 10 >> "tmp/log/All-$POLICY-$SIZE-$run.log"
+         echo "$LOG" | sed 's/^.*GET //' | sed 's/ - HIER_.*$//' | sort | uniq -cd | sort -bg | tail -n 10 >> "tmp/log/All-$POLICY-$SIZE-$run.log"
 #      fi
       
       #Compute the hit rate
