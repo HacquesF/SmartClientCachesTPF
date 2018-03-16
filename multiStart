@@ -130,7 +130,7 @@ julia barHit.jl $FILE
 mv tmp/res.log tmp/$NBCLIENT-$NBQUERIES.log
 mv tmp/log tmp/$NBCLIENT-$NBQUERIES
 mv tmp/hit.svg tmp/$NBCLIENT-$NBQUERIES.svg
-mkdir log
+mkdir tmp/log
 
 #Stopping the server
 docker rm -f ldf-server
