@@ -126,6 +126,12 @@ done
 #Making the graph
 julia barHit.jl $FILE
 
+#Renaming everything
+mv tmp/res.log tmp/$NBCLIENT-$NBQUERIES.log
+mv tmp/log tmp/$NBCLIENT-$NBQUERIES
+mv tmp/hit.svg tmp/$NBCLIENT-$NBQUERIES.svg
+mkdir log
+
 #Stopping the server
 docker rm -f ldf-server
 
