@@ -54,10 +54,14 @@ do
    POLICY=${POLICY// /-}
    #Extract size
    SIZE=`echo "$CONF" | grep cache_mem | tr -dc '0-9'`
+   CONF=""
    echo "$POLICY : $SIZE"
    #Loop the runs
    for run in `seq 0 2`;
    do
+      #Clean up for ram
+      LOG=""
+      LOGHITCUR=""
       #Run clients
       for client in `seq 1 $NBCLIENT`;
       do
@@ -71,15 +75,18 @@ do
       LOG=$(docker exec squid cat /var/log/squid3/access.log)
       
       #Get reduced hit log with numbers and removed one time occurences
-      LOGHITCUR=`echo "$LOG" | grep TCP.*_HIT | sed 's/^.*GET //' | sed 's/ - HIER_.*$//' | sort | uniq -cd`
+      LOGHITCUR=`echo "$LOG" | grep TCP.*_HIT | sed 's/^.*GET //' | sed 's/ - HIER_.*$//'`
+      
       
       #Get the number of hits
-      HITCURTOT=`echo "$LOG" | grep TCP.*_HIT | wc -l`
+      HITCURTOT=`echo "$LOGHITCUR" | wc -l`
       
       #Get the number of http call
       TOT=`echo "$LOG" | wc -l`
       echo "Hitcur for run $run : $HITCURTOT, total is $TOT"
       
+         #Clean Log and only keep duplicate
+      HITPOSSCUR=`echo "$LOG" | sed 's/^.*GET //' | sed 's/ - HIER_.*$//' | sort | uniq -cd`
       #Save the cache hit, also save most common page to compare
       # Save all the runs because first tests showed big difference
 #      if [ $run -eq 0 ]
@@ -87,10 +94,10 @@ do
 #         echo "$LOG" > "tmp/log/all-$POLICY-$SIZE.log"
             #Cache
          echo "$HITCURTOT : Number of hit" > "tmp/log/Cache-$POLICY-$SIZE-$run.log"
-         echo "$LOGHITCUR" | sort -bg | tail -n 10 >> "tmp/log/Cache-$POLICY-$SIZE-$run.log"
+         echo "$LOGHITCUR" | sort | uniq -cd | sort -bg | tail -n 10 >> "tmp/log/Cache-$POLICY-$SIZE-$run.log"
             #All
          echo "$TOT : Number of hit" > "tmp/log/All-$POLICY-$SIZE-$run.log"
-         echo "$LOG" | sed 's/^.*GET //' | sed 's/ - HIER_.*$//' | sort | uniq -cd | sort -bg | tail -n 10 >> "tmp/log/All-$POLICY-$SIZE-$run.log"
+         echo "$HITPOSSCUR" | sort -bg | tail -n 10 >> "tmp/log/All-$POLICY-$SIZE-$run.log"
 #      fi
       
       #Compute the hit rate
@@ -99,8 +106,7 @@ do
       HITAVG=$(echo "scale=4; ($HITAVG*$run+$HITCUR)/($run+1)" | bc)
       
       #Compute the new maximum hit possible
-         #Clean Log and only keep duplicate
-      HITPOSSCUR=`echo "$LOG" | sed 's/^.*GET //' | sed 's/ - HIER_.*$//' | sort | uniq -cd`
+      
          #Extract and add all the numbers
       HITPOSSCUR=`echo "$HITPOSSCUR" | grep -o "^ *[0-9]*" | sed 's/^ *//' | awk '{s+=$1-1} END {print s}'`
       HITPOSSCUR=$(echo "scale=4; ($HITPOSSCUR*100/$TOT)" | bc)
