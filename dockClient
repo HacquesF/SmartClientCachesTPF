@@ -1,7 +1,8 @@
 #!/bin/bash
-if [ ! $# -eq 3 ]
+if [ $# -lt 2 ] || [ $# -gt 5 ] ;
 then
    echo "Needs exactly 3 arguments. Usage: dockClient ServerIP ClientNumber NumberOfQueries"
+   echo "An optional 4th arguments can be added to specify the cache size"
    exit 1
 fi
 
@@ -19,7 +20,14 @@ NBQUERIES=$3
 
 #Run the client
 echo "Starting client $CLIENTNB"
-docker run --name ldf-allclient$CLIENTNB -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 /tmp/queries.json -e $END -s $START
+if [ $# -eq 3 ]
+then
+   docker run --name ldf-allclient$CLIENTNB -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 /tmp/queries.json -e $END -s $START
+elif [ $# -eq 4 ]
+then
+   CACHE=$4
+   docker run --name ldf-allclient$CLIENTNB -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 /tmp/queries.json -e $END -s $START -c $CACHE
+fi
 echo "Client $CLIENTNB as finished"
 
 #Remove the container once it has executed
