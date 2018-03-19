@@ -4,6 +4,8 @@
 
 Build the dockers for ldf-allClient, ldf-server and squid. Dockers need to be named like that for the main script to work. Build them with `docker build -t Name .`
 
+Create a conf directory and paste the squid configuration files to use. (Need to had the empty directory to git)
+
 # Execution
 
 > start NumberOfClients NumberOfQueries
