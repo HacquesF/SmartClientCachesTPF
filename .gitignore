@@ -1,5 +1,5 @@
 zip
 node_modules
 tmp
-conf
+conf/*
 squid.conf
