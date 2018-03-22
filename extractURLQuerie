@@ -1,37 +1,37 @@
 #!/bin/bash
 ##TODO
 ##Check if prefix exist before trying to apply them
-##Add support for queries with ;
+##Add support for QUERIEs with ;
 if [ ! $# -eq 3 ]
 then
-   echo "Needs exactly 3 argument. Usage: extractURLQuerie QuerieFile NumberOfQueries ServerIP"
+   echo "Needs exactly 3 argument. Usage: extractURLQUERIE QUERIEFile QUERIENumber ServerIP"
    exit 1
 fi
 
 SERVIP=$3
-LASTLINE=$(echo "scale=4; 1+2*$2" | bc)
-QUERIES=`head -n $LASTLINE $1 | grep -o "\".*\""`
-x=0
-#Each querie is a separate querie
-while read -r querie; do
+LINE=$2
+(( LINE=LINE+2 ))
+QUERIE=`sed -n "$LINE"p $1 | grep -o "\".*\""`
+#Each QUERIE is a separate QUERIE
+#while read -r QUERIE; do
    #Extract all prefix
-   TEMP=`echo -e "$querie" | grep PREFIX`
+   TEMP=`echo -e "$QUERIE" | grep PREFIX`
    #Remove everything before, after and around triples
-   querie=`echo "$querie" | sed 's/^.*WHERE {//'`
-   querie=`echo -e "$querie" | sed 's/<//' | sed 's/>//' | sed 's/ \.//' | sed 's/ *}//' | sed 's/OPTIONAL { //' | grep -v 'FILTER\|ORDER\|LIMIT' | tail -n +2 | head -n -2 | sed 's/^ *//'`
+   QUERIE=`echo "$QUERIE" | sed 's/^.*WHERE {//'`
+   QUERIE=`echo -e "$QUERIE" | sed 's/<//' | sed 's/>//' | sed 's/ \.//' | sed 's/ *}//' | sed 's/OPTIONAL { //' | grep -v 'FILTER\|ORDER\|LIMIT' | tail -n +2 | head -n -2 | sed 's/^ *//'`
    #Extract template from prefix
    TEMP=`echo "$TEMP" | awk '{print $2" "$3}' | sed 's/<//' | sed 's/>//'`
    #Assign prefix to triples
    while read -r pref; do
       PAT=`echo "$pref" | awk '{print $1}'`
       URL=`echo "$pref" | awk '{print $2}'`
-      querie=`echo -e "$querie" | sed "s|$PAT|$URL|g"`
+      QUERIE=`echo -e "$QUERIE" | sed "s|$PAT|$URL|g"`
    done <<< "$TEMP"
    #Make the change of url characters
 ###   / -> %2F
 ###   : -> %3A
 ###   # -> %23
-   querie=`echo "$querie" | sed 's/\//%2F/g' | sed 's/:/%3A/g' | sed 's/#/%23/g' | sed 's/\?[Aa-Zz0-9]*/a/g'`
+   QUERIE=`echo "$QUERIE" | sed 's/\//%2F/g' | sed 's/:/%3A/g' | sed 's/#/%23/g' | sed 's/\?[Aa-Zz0-9]*/a/g'`
    #Create the url from the triples, working on one line at a time
    while read -r spo;
    do
@@ -60,7 +60,7 @@ while read -r querie; do
       #Adding the end of the url if it exist
       URL=$URL`[ $(echo $END | wc -c) -gt 1 ] && echo "?$END"`
       TOT="$TOT$URL\n"
-   done <<< "$querie"
-done <<< "$QUERIES"
+   done <<< "$QUERIE"
+#done <<< "$QUERIES"
 echo -ne "$TOT"
 #echo -e $TOT |  test.jl
