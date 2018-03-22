@@ -1,13 +1,15 @@
 #!/bin/bash
-if [ ! $# -eq 2 ]
+if [ ! $# -eq 3 ]
 then
-   echo "Needs exactly 2 argument. Usage: exStart NumberOfQueries ClientCacheSize"
+   echo "Needs exactly 3 argument. Usage: exStart QUERIEFile NumberOfQueries ClientCacheSize"
    exit 1
 fi
 
-NBQUERIES=$1
-CLIENTCACHE=$2
+NBQUERIES=$2
+CLIENTCACHE=$3
+FILE=$1
 
+#../zip/queries/scale1000_queries.json
 #Start the server
 ./dockServer
 touch tmp/extracted.tmp
@@ -22,13 +24,17 @@ do
    RES=0
    for nbq in `seq 0 $NBQUERIES`;
    do
+      LINE=$nbq
+      (( LINE=LINE+2 ))
+      QUERIE=`sed -n "$LINE"p $FILE | grep -o "\".*\"" | sed 's/"//g'`
       LOG=""
       TOT=0
       LOGNB=0
-      ./extractURLQuerie ../zip/queries/scale1000_queries.json $nbq $SERVIP > tmp/extracted.tmp
+      ./extractURLQuerie "$QUERIE" "$SERVIP" > tmp/extracted.tmp
+      QUERIE=$(echo -e "$QUERIE")
       #Start client
       (( suiv=nbq+1 ))
-      LOG=$(docker run --name ldf-allclient -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 /tmp/queries.json -s $nbq -e $suiv -c $CACHE -l info 2>&1)
+      LOG=$(docker run --name ldf-allclient ldf-allclient http://$SERVIP:3000/scale1000 -q "$QUERIE" -c $CACHE -l info 2>&1)
       #Remove client
       docker rm -f ldf-allclient
       #Only keep URL

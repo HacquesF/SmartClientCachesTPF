@@ -4,27 +4,33 @@ var Cache = require('lru-cache');
 
 //e = id of last queries
 //s = id of first queries
+//n = name of file
+//q = string querie
 //l = type of log
 //c = max cache size
 //Set up args
 var argv = require('minimist')(process.argv.slice(2));
 //console.dir(argv);
-const fileName = argv._.pop();
+
 const server = argv._;
 
 //Set up log level
    ldf.Logger.setLevel(argv.l || 'warning');
-//If no args, just the first one
-const nbQueries = argv.e || 1;
-const startQuerie = argv.s || 0;
+
 //Read queries file
 //const server = process.argv[2]
-var file = fs.readFileSync(fileName, 'utf8');
-var queries = [];
-queries = JSON.parse(file);
+var queries = [argv.q] || [];
 
+if(argv.n){
+   const fileName = argv.n;
+   //If no args, just the first one
+   const nbQueries = argv.e || 1;
+   const startQuerie = argv.s || 0;
+   var file = fs.readFileSync(fileName, 'utf8');
+   queries = JSON.parse(file);
+   queries = queries.slice(startQuerie, nbQueries)
+}
 
-queries = queries.slice(startQuerie, nbQueries)
 function execute(query) {
    return new Promise(resolve => {
       //var results = new ldf.SparqlIterator(queries[value], { fragmentsClient: fragmentsClient })

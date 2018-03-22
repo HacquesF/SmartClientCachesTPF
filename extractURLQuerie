@@ -2,16 +2,16 @@
 ##TODO
 ##Check if prefix exist before trying to apply them
 ##Add support for QUERIEs with ;
-if [ ! $# -eq 3 ]
+if [ ! $# -eq 2 ]
 then
-   echo "Needs exactly 3 argument. Usage: extractURLQUERIE QUERIEFile QUERIENumber ServerIP"
+   echo "Needs exactly 2 argument. Usage: extractURLQUERIE Querie ServerIP"
    exit 1
 fi
 
-SERVIP=$3
-LINE=$2
-(( LINE=LINE+2 ))
-QUERIE=`sed -n "$LINE"p $1 | grep -o "\".*\""`
+SERVIP=$2
+#LINE=$2
+#(( LINE=LINE+2 ))
+QUERIE=$1
 #Each QUERIE is a separate QUERIE
 #while read -r QUERIE; do
    #Extract all prefix
