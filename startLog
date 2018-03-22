@@ -1,0 +1,40 @@
+#!/bin/bash
+##Faut separer les queries =/
+if [ ! $# -eq 2 ]
+then
+   echo "Needs exactly 2 argument. Usage: exStart NumberOfQueries ClientCacheSize"
+   exit 1
+fi
+
+NBQUERIES=$1
+CLIENTCACHE=$2
+
+#Start the server
+./dockServer
+touch tmp/extracted.tmp
+#Get the server ip
+SERVIP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ldf-server)
+./extractURLQuerie ../zip/queries/scale1000_queries.json $NBQUERIES $SERVIP > tmp/extracted.tmp
+RES=0
+for run in `seq 0 2`;
+do
+   #Start client
+   LOG=$(docker run --name ldf-allclient -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 /tmp/queries.json -e $NBQUERIES -c $CACHE -l info 2>&1)
+   #Remove client
+   docker rm -f ldf-allclient
+   #Only keep URL
+   LOG=`echo "$LOG" | awk '{print $11}'`
+   TOT=`echo "$LOG" | wc -l`
+   #Regrouping url appearing multiple times
+   LOG=`echo "$LOG" | sort | uniq -c`
+   #URL coming from the querie
+   LOG=`echo "$LOG" | fgrep -f tmp/extracted.tmp`
+   
+   LOG=`echo "$LOG" | sed 's/^ *//' | awk '{s+=$1} END {print s}'`
+   LOG=$(echo "scale=4; ($LOG*100/$TOT)" | bc)
+   RES=$(echo "scale=4; ($RES*$run+$LOG)/($run+1)" | bc)
+   echo "$LOG : $RES"
+done
+rm tmp/extracted.tmp
+#Stopping the server
+docker rm -f ldf-server

@@ -3,7 +3,7 @@
 #It will output in tmp/log the most hit pages, and a bar blot with the hit rates for each conf
 if [ ! $# -eq 3 ]
 then
-   echo "Needs exactly 2 argument. Usage: exStart NumberOfClients NumberOfQueries ClientCacheSize"
+   echo "Needs exactly 3 argument. Usage: exStart NumberOfClients NumberOfQueries ClientCacheSize"
    exit 1
 fi
 NBQUERIES=$2

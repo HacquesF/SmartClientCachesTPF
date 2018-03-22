@@ -8,7 +8,7 @@ var Cache = require('lru-cache');
 //c = max cache size
 //Set up args
 var argv = require('minimist')(process.argv.slice(2));
-console.dir(argv);
+//console.dir(argv);
 const fileName = argv._.pop();
 const server = argv._;
 
