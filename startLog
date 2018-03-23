@@ -18,7 +18,7 @@ SERVIP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{e
 RES=0
 ALL=0
 (( NBQUERIES=NBQUERIES-1 ))
-for run in `seq 0 0`;
+for run in `seq 0 2`;
 do
    #Need to find a better way to split query
    RES=0
