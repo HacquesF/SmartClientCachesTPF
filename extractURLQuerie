@@ -18,8 +18,8 @@ QUERIE=$1
    TEMP=`echo -e "$QUERIE" | grep PREFIX`
    #Remove everything before, after and around triples
    QUERIE=`echo "$QUERIE" | sed -n '/^.*WHERE {/,$p'`
-   QUERIE=`echo -e "$QUERIE" | sed 's/<//g' | sed 's/>//g' | sed 's/ \.//g' | sed 's/ *}//g' | sed 's/OPTIONAL { //g' | grep -v 'FILTER\|ORDER\|LIMIT\|UNION' | tail -n +2 | head -n -1 | sed 's/{//g' | sed 's/^ *//g'`
-   if [ ! $(echo "$TEMP" | wc -l) -eq 0 ]
+   QUERIE=`echo -e "$QUERIE" | sed 's/<//g' | sed 's/>//g' | sed 's/ \.//g' | sed 's/ *}//g' | sed 's/ *WHERE { *//g' | sed 's/OPTIONAL { //g' | grep -v 'FILTER\|ORDER\|LIMIT\|UNION' | sed '/^\s*$/d' | sed 's/{//g' | sed 's/^ *//g'`
+   if [ ! $(echo "$TEMP" | sed '/^\s*$/d'| wc -l) -eq 0 ]
    then
       #Extract template from prefix
       TEMP=`echo "$TEMP" | awk '{print $2" "$3}' | sed 's/<//' | sed 's/>//'`
