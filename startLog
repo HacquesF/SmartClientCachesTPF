@@ -11,7 +11,7 @@ FILE=$1
 
 #../zip/queries/scale1000_queries.json
 #Start the server
-./dockServer
+./dockServer > /dev/null
 touch tmp/extracted.tmp
 #Get the server ip
 SERVIP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ldf-server)
@@ -24,6 +24,7 @@ do
    RES=0
    for nbq in `seq 0 $NBQUERIES`;
    do
+
       LINE=$nbq
       (( LINE=LINE+2 ))
       QUERIE=`sed -n "$LINE"p $FILE | grep -o "\".*\"" | sed 's/"//g'`
@@ -34,23 +35,26 @@ do
       QUERIE=$(echo -e "$QUERIE")
       #Start client
       (( suiv=nbq+1 ))
-      LOG=$(docker run --name ldf-allclient ldf-allclient http://$SERVIP:3000/scale1000 -q "$QUERIE" -c $CACHE -l info 2>&1)
+      LOG=$(docker run --name ldf-allclient ldf-allclient http://$SERVIP:3000/scale1000 -q "$QUERIE" -c $CLIENTCACHE -l info 2>&1)
       #Remove client
-      docker rm -f ldf-allclient
+      docker rm -f ldf-allclient > /dev/null
       #Only keep URL
       LOG=`echo "$LOG" | awk '{print $11}'`
       TOT=`echo "$LOG" | wc -l`
+      #REmove grouping, grep on all, wc -l
       #Regrouping url appearing multiple times
-      LOG=`echo "$LOG" | sort | uniq -c`
+      #LOG=`echo "$LOG" | sort | uniq -c`
       #URL coming from the querie
-      LOG=`echo "$LOG" | fgrep -f tmp/extracted.tmp`
-      LOGNB=`echo "$LOG" | sed 's/^ *//' | awk '{s+=$1} END {print s}'`
+      LOGNB=`echo "$LOG" | fgrep -f tmp/extracted.tmp | wc -l`
+      #LOGNB=`echo "$LOG" | sed 's/^ *//' | awk '{s+=$1} END {print s}'`
       LOGNB=$(echo "scale=4; ($LOGNB*100/$TOT)" | bc)
+      printf " $LOGNB"
       RES=$(echo "scale=4; ($RES*$nbq+$LOGNB)/($nbq+1)" | bc)
    done
+   printf "\n"
    ALL=$(echo "scale=4; ($ALL*$run+$RES)/($run+1)" | bc)
 done
-echo "$ALL"
+#echo "$ALL"
 rm tmp/extracted.tmp
 #Stopping the server
-docker rm -f ldf-server
+docker rm -f ldf-server > /dev/null
