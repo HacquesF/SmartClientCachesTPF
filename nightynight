@@ -1,0 +1,30 @@
+#!/bin/bash
+FILE="../zip/queries/scale1000_queries.json"
+touch tmp/statOptiQ.txt
+RES=$(./startLog $FILE 100 1)
+printf "1 " >> tmp/statOptiQ.txt
+echo "$RES" | grep -xo "[0-9\.]*" >> tmp/statOptiQ.txt
+
+RES=$(./startLog $FILE 100 100)
+printf "100 " >> tmp/statOptiQ.txt
+echo "$RES" | grep -xo "[0-9\.]*" >> tmp/statOptiQ.txt
+
+RES=$(./startLog $FILE 100 250)
+printf "250 " >> tmp/statOptiQ.txt
+echo "$RES" | grep -xo "[0-9\.]*" >> tmp/statOptiQ.txt
+
+RES=$(./startLog $FILE 100 500)
+printf "500 " >> tmp/statOptiQ.txt
+echo "$RES" | grep -xo "[0-9\.]*" >> tmp/statOptiQ.txt
+
+RES=$(./startLog $FILE 100 1000)
+printf "1000 " >> tmp/statOptiQ.txt
+echo "$RES" | grep -xo "[0-9\.]*" >> tmp/statOptiQ.txt
+
+RES=$(./startLog $FILE 100 5000)
+printf "5000 " >> tmp/statOptiQ.txt
+echo "$RES" | grep -xo "[0-9\.]*" >> tmp/statOptiQ.txt
+
+RES=$(./startLog $FILE 100 10000)
+printf "10000 " >> tmp/statOptiQ.txt
+echo "$RES" | grep -xo "[0-9\.]*" >> tmp/statOptiQ.txt
