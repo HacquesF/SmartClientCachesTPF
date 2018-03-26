@@ -6,8 +6,18 @@ var query = args.q;
 const server= args.s;
     
 //options = options || {};
-if (typeof query === 'string')
-   query = new SparqlParser({}).parse(query);
+//try {
+   if (typeof query === 'string')
+      query = new SparqlParser({}).parse(query);
+   getBGP(query);
+//}
+//catch (error) {
+// if (/Parse error/.test(error.message))
+//   error = new InvalidQueryError(query, error);
+// else
+//   error = new UnsupportedQueryError(query, error);
+// throw error;
+//}
 //Debug
 function getBGP(query){
    if(query.type == 'query'){
@@ -27,7 +37,6 @@ function getBGP(query){
       }
    }
 }
-getBGP(query);
 
 function charChange(str){
    str= str.replace(/\//g,'%2F');

@@ -20,7 +20,7 @@ SERVIP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{e
 RES=0
 ALL=0
 (( NBQUERIES=NBQUERIES-1 ))
-for run in `seq 0 2`;
+for run in `seq 0 0`;
 do
    #Need to find a better way to split query
    RES=0
@@ -29,11 +29,11 @@ do
 
       LINE=$nbq
       (( LINE=LINE+2 ))
-      QUERIE=`sed -n "$LINE"p $FILE | grep -o "\".*\"" | sed 's/"//g'`
+      QUERIE=`sed -n "$LINE"p $FILE | grep -o "\".*\"" | sed 's/^"//' | sed 's/"$//'`
       LOG=""
       TOT=0
       LOGNB=0
-      QUERIE=$(echo -e "$QUERIE")
+      QUERIE=$(printf "$QUERIE")
       docker run --name ldf-urlextractor ldf-urlextractor -q "$QUERIE" -s "http://$SERVIP:3000/scale1000" > tmp/extracted.tmp
       docker rm -f ldf-urlextractor > /dev/null
       #Start client
