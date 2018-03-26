@@ -2,4 +2,4 @@
 FILE="../zip/queries/scale1000_queries.json"
 OUTPUT=tmp/logCSize$1.txt
 touch $OUTPUT
-./startLog $FILE 50 $1 > $OUTPUT
+./startLog $FILE 9 $1 > $OUTPUT

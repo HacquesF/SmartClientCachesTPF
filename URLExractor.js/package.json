@@ -1,0 +1,15 @@
+{
+ "name": "ldf-URLExtraxtor",
+ "version": "1.0.0",
+ "description": "Extract url from querie",
+ "main": "ldf-URLExtraxtor.js",
+ "engines": {
+  "node": ">=4.0"
+ },
+ "bin": {
+  "ldf-URLExtraxtor": "./bin/ldf-URLExtraxtor"
+ },
+ "dependencies": {
+  "ldf-client": "^2.0.5"
+ }
+}

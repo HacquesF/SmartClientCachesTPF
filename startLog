@@ -8,7 +8,9 @@ fi
 NBQUERIES=$2
 CLIENTCACHE=$3
 FILE=$1
-
+#In some of my querie I have !bound in FILTER, bash hate so I deactivate history to allow the script to work everywhere
+set +H
+#It gets back up at the end
 #../zip/queries/scale1000_queries.json
 #Start the server
 ./dockServer > /dev/null
@@ -31,15 +33,16 @@ do
       LOG=""
       TOT=0
       LOGNB=0
-      ./extractURLQuerie "$QUERIE" "$SERVIP" > tmp/extracted.tmp
       QUERIE=$(echo -e "$QUERIE")
+      docker run --name ldf-urlextractor ldf-urlextractor -q "$QUERIE" -s "http://$SERVIP:3000/scale1000" > tmp/extracted.tmp
+      docker rm -f ldf-urlextractor > /dev/null
       #Start client
       (( suiv=nbq+1 ))
       LOG=$(docker run --name ldf-allclient ldf-allclient http://$SERVIP:3000/scale1000 -q "$QUERIE" -c $CLIENTCACHE -l info 2>&1)
       #Remove client
       docker rm -f ldf-allclient > /dev/null
       #Only keep URL
-      LOG=`echo "$LOG" | awk '{print $11}'`
+      LOG=`echo -e "$LOG" | awk '{print $11}'`
       TOT=`echo "$LOG" | wc -l`
       #REmove grouping, grep on all, wc -l
       #Regrouping url appearing multiple times
@@ -55,6 +58,8 @@ do
    ALL=$(echo "scale=4; ($ALL*$run+$RES)/($run+1)" | bc)
 done
 #echo "$ALL"
+#Welcome back history
+set -H
 rm tmp/extracted.tmp
 #Stopping the server
 docker rm -f ldf-server > /dev/null
