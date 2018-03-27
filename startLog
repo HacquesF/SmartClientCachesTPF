@@ -24,6 +24,7 @@ for run in `seq 0 2`;
 do
    #Need to find a better way to split query
    RES=0
+   printf "$CLIENTCACHE"
    for nbq in `seq 0 $NBQUERIES`;
    do
 
