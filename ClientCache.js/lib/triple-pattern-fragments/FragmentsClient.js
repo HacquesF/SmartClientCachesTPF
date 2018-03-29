@@ -9,7 +9,9 @@ var HttpClient = require('../util/HttpClient'),
     CompositeExtractor = require('../extractors/CompositeExtractor'),
     CountExtractor = require('../extractors/CountExtractor'),
     ControlsExtractor = require('../extractors/ControlsExtractor'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    logger = require('../util/Logger.js');
+    //Added Logger
 
 // Prefer quad-based serialization formats (which allow a strict data/metadata separation),
 // and prefer less verbose formats. Also, N3 support is only partial.
@@ -29,6 +31,11 @@ function FragmentsClient(startFragment, options) {
   options = _.defaults(options || {}, { contentType: DEFAULT_ACCEPT });
 
   var cache = this._cache = new Cache({ max: 100 });
+  //-------Add CacheGen
+  this._cacheGen = new Cache({max: 1, stale: true});
+  //-----Add a logger
+  this._logger = options.logger || logger('FragmentsClient');
+  
   this._httpClient = options.httpClient || new HttpClient(options);
 
   // Extract counts and triple pattern fragments controls by default
@@ -63,8 +70,16 @@ function FragmentsClient(startFragment, options) {
 FragmentsClient.prototype.getFragmentByPattern = function (pattern) {
   // Check whether the fragment was cached
   var cache = this._cache, key = JSON.stringify(pattern);
-  if (cache.has(key))
+  //Checking cacheGen first
+  var cacheGen=this._cacheGen;
+  if(this._cacheGen.has(key)){
+    this._logger.info('HitGen', key);
+    return cacheGen.get(key).clone();
+  }
+  if (cache.has(key)){
+    this._logger.info('HitLRU', key);
     return cache.get(key).clone();
+  }
   // Create a dummy iterator until the fragment is loaded
   var fragment = new Fragment(this, pattern);
 
