@@ -110,6 +110,39 @@ FragmentsClient.prototype.getFragmentByPattern = function (pattern) {
   return fragment.clone();
 };
 
+//--Add function to load a fragment without fetching the next page
+FragmentsClient.prototype.getOnlyFragmentByPattern = function (pattern) {
+  // Create a dummy iterator until the fragment is loaded
+  var fragment = new Fragment(this, pattern);
+
+  // Check if the start fragment was loaded without error
+  var startFragment = this._startFragment;
+  if (startFragment.error !== null) { // null means definitely correctly loaded
+    if (startFragment.error)          // an error means definitely incorrectly loaded
+      return setImmediate(startFragmentError), fragment;
+    startFragment.once('error', startFragmentError); // undefined means we don't know yet
+  }
+  function startFragmentError() { fragment.emit('error', startFragment.error); fragment.close(); }
+
+  // Retrieve the fragment using the start fragment's controls
+  startFragment.getProperty('controls', function (controls) {
+    // Replace all variables and blanks in the pattern by `null`
+    var subject   = rdf.isVariableOrBlank(pattern.subject)   ? null : pattern.subject;
+    var predicate = rdf.isVariableOrBlank(pattern.predicate) ? null : pattern.predicate;
+    var object    = rdf.isVariableOrBlank(pattern.object)    ? null : pattern.object;
+
+    // Only attempt to fetch the fragment if its components are valid
+    if (rdf.isLiteral(subject) || rdf.isLiteral(predicate)) return fragment.empty();
+
+    // Load and cache the fragment
+    pattern = { subject: subject, predicate: predicate, object: object };
+    fragment.loadFromOneUrl(controls.getFragmentUrl(pattern));
+  });
+  
+  return fragment.clone();
+};
+
+
 /** Aborts all requests. */
 FragmentsClient.prototype.abortAll = function () {
   this._httpClient.abortAll();
@@ -180,6 +213,61 @@ Fragment.prototype.loadFromUrl = function (pageUrl) {
         // Load the next page, or end if none was found
         nextPage ? fragment.loadFromUrl(nextPage) : fragment.close();
       }
+      parsedPage.on('error', function (error) { fragment.emit('error', error); });
+
+      // A new page of data has been loaded, so this fragment is readable again
+      fragment.readable = true;
+    });
+  });
+};
+
+//------Add to load one url and not the next
+// Loads the Triple Pattern Fragment located at the given URL
+Fragment.prototype.loadFromOneUrl = function (pageUrl) {
+  // Fetch a page of the fragment
+  var fragment = this, fragmentsClient = this._fragmentsClient, rawPage,
+      headers = { 'user-agent': 'Triple Pattern Fragments Client' };
+  if (fragmentsClient._startFragmentUrl) headers.referer = fragmentsClient._startFragmentUrl;
+  rawPage = fragmentsClient._httpClient.get(pageUrl, headers);
+  rawPage.on('error', function (error) { fragment.emit('error', error); });
+  // Parse the raw page when the response arrives, extracting data, metadata, and controls
+  rawPage.getProperty('statusCode', function (statusCode) {
+    if (statusCode !== 200) {
+      rawPage.emit('error', new Error('Could not retrieve ' + pageUrl + ' (' + statusCode + ')'));
+      return fragment.close();
+    }
+
+    // Parse the raw page using the appropriate parser for the content type
+    rawPage.getProperty('contentType', function (contentType) {
+      var Parser = _.find(parserTypes, function (P) { return P.supportsContentType(contentType); });
+      if (!Parser)
+        return fragment.emit('error', new Error('No parser for ' + contentType + ' at ' + pageUrl));
+      var parsedPage = fragment._page = new Parser(rawPage, pageUrl);
+      parsedPage.on('readable', function () { fragment.readable = true; });
+
+      // Extract the page's metadata and controls
+      var controls = {};
+      fragmentsClient._metadataExtractor.extract({ fragmentUrl: pageUrl },
+        parsedPage.metadataStream, function (error, metadata) {
+          // Emit all new properties
+          for (var type in metadata) {
+            if (!fragment.getProperty(type))
+              fragment.setProperty(type, metadata[type]);
+          }
+          // Store the controls so we can find the next page
+          controls = metadata.controls || controls;
+        });
+
+//      // Load the next page when this one is finished, using setImmediate to wait for controls
+//      parsedPage.on('end', function () { setImmediate(loadNextPage); });
+//      function loadNextPage() {
+//        // Find the next page's URL through hypermedia controls in the current page
+//        var nextPage;
+//        try { nextPage = controls && controls.next; }
+//        catch (controlError) { /* ignore missing control */ }
+//        // Load the next page, or end if none was found
+//        nextPage ? fragment.loadFromUrl(nextPage) : fragment.close();
+//      }
       parsedPage.on('error', function (error) { fragment.emit('error', error); });
 
       // A new page of data has been loaded, so this fragment is readable again

@@ -31,8 +31,9 @@ function getBGP(query){
 //   }
    for (var i= 0; i<arr.length; ++i) {
       if(arr[i].type == 'bgp'){
-         printURL(arr[i]);
-      }else if(arr[i].type == 'union' || arr[i].type == 'optional' || arr[i].type == 'group'){
+         printURL(arr[i]); 
+         //|| arr[i].type == 'optional'
+      }else if(arr[i].type == 'union' || arr[i].type == 'group'){
          getBGP(arr[i]);
       }
    }

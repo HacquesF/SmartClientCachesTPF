@@ -1,10 +1,12 @@
-//EXE: docker run --name ldf-clientcache -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-clientcache http://172.17.0.2:3000/scale1000.json -l info -n /tmp/queries.json -e 2
+//EXE: docker run --name ldf-clientcache -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-clientcache http://172.17.0.2:3000/scale1000 -l info -n /tmp/queries.json -e 2
 
 var fs = require('fs');
 var ldf = require('../ldf-client');
 var Cache = require('lru-cache');
 var SparqlParser = require('sparqljs').Parser;
-var rdf = require('../lib/util/RdfUtil');
+var _ = require('lodash'),
+   FragClient = require('../lib/triple-pattern-fragments/FragmentsClient'),
+   rdf = require('../lib/util/RdfUtil');
 
 var logger = require('../lib/util/Logger')
 //e = id of last queries
@@ -18,7 +20,7 @@ var argv = require('minimist')(process.argv.slice(2));
 //console.dir(argv);
 
 const server = argv._;
-
+ldf.Logger.setLevel(argv.l || 'warning');
 
 
 //Read queries file
@@ -52,7 +54,7 @@ function getBGP(query){
    for (var i= 0; i<arr.length; ++i) {
       if(arr[i].type == 'bgp'){
          addTriple(arr[i]).forEach(t => tripRes.add(t));
-      }else if(arr[i].type == 'union' || arr[i].type == 'optional' || arr[i].type == 'group'){
+      }else if(arr[i].type == 'union' || arr[i].type == 'group'){
          getBGP(arr[i]);
       }
    }
@@ -73,20 +75,17 @@ function fillCache() {
    return new Promise(resolve => {
       var fgClient = new ldf.FragmentsClient(server, {logger: logger('HttpCache')});
 //      //Filling CacheGen
-      for(let t of tripPres){
-         var key = JSON.stringify(t)
-         var frag = fgClient.getFragmentByPattern(t)
-            CacheGen.set(key, frag)
-            var last = frag;
-         
+      for(let pattern of tripPres){
+         var key = JSON.stringify(pattern);
+         var frag = fgClient.getOnlyFragmentByPattern(pattern);
+         CacheGen.set(key, frag);
       }
-          resolve()
+      resolve()
       
 //      var ite = tripPres.values();
 //      loopIte(ite,fgClient).then(function (){
 //         resolve();
 //      })
-
    })
 }
 //function loopIte(ite, fgClient){
@@ -135,7 +134,7 @@ function execute(query) {
 }
 
 fillCache().then(() => {
-   ldf.Logger.setLevel(argv.l || 'warning');
+   console.log(queries);
    queries.reduce((acc, query) => acc.then((globalResult) => {
 	   return execute(query)
    }), Promise.resolve([])).then((finalResult) => {

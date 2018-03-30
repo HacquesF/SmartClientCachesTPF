@@ -1,0 +1,38 @@
+#!/bin/bash
+if [ ! $# -eq 2 ]
+then
+   echo "Needs exactly 2 argument. Usage: exStart QUERIEFile NumberOfQueries"
+   exit 1
+fi
+
+NBQUERIES=$2
+FILE=$1
+#In some of my querie I have !bound in FILTER, bash hate so I deactivate history to allow the script to work everywhere
+set +H
+#It gets back up at the end
+#../zip/queries/scale1000_queries.json
+#Start the server
+./dockServer > /dev/null
+touch tmp/extracted.tmp
+#Get the server ip
+SERVIP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ldf-server)
+RES=0
+ALL=0
+(( NBQUERIES=NBQUERIES-1 ))
+#Need to find a better way to split query
+RES=0
+printf "$CLIENTCACHE"
+for nbq in `seq 0 $NBQUERIES`;
+do
+
+   LINE=$nbq
+   (( LINE=LINE+2 ))
+   QUERIE=`sed -n "$LINE"p $FILE | grep -o "\".*\"" | sed 's/^"//' | sed 's/"$//'`
+   LOG=""
+   TOT=0
+   LOGNB=0
+   QUERIE=$(printf "$QUERIE")
+   docker run --name ldf-urlextractor ldf-urlextractor -q "$QUERIE" -s "http://$SERVIP:3000/scale1000" >> tmp/extracted.tmp
+   docker rm -f ldf-urlextractor > /dev/null
+done
+sort tmp/extracted.tmp | uniq | wc -l
