@@ -1,6 +1,6 @@
 var fs = require('fs');
 var ldf = require('ldf-client');
-var Cache = require('lru-cache');
+//var Cache = require('lru-cache');
 
 //e = id of last queries
 //s = id of first queries
@@ -8,6 +8,7 @@ var Cache = require('lru-cache');
 //q = string querie
 //l = type of log
 //c = max cache size
+//h = number of concurrent request
 //Set up args
 var argv = require('minimist')(process.argv.slice(2));
 //console.dir(argv);
@@ -34,8 +35,7 @@ if(argv.n){
 function execute(query) {
    return new Promise(resolve => {
       //var results = new ldf.SparqlIterator(queries[value], { fragmentsClient: fragmentsClient })
-	var fragmentsClient = new ldf.FragmentsClient(server);
-	fragmentsClient._cache = new Cache({ max: argv.c || 100 });
+	var fragmentsClient = new ldf.FragmentsClient(server,{ max: argv.c || 100, concurrentRequests: argv.h || 10 });
 	var result = new ldf.SparqlIterator(query, { fragmentsClient: fragmentsClient })
 	result.on('data', (res) => {
 		//
