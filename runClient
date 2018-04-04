@@ -1,0 +1,15 @@
+#!/bin/bash
+./dockServer
+SERVIP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ldf-server)
+SUFF=$3
+CLIENTCACHE=$2
+NBQUERIES=$1
+for run in `seq 0 2`;
+do
+   echo "Start run $run"
+   docker run --name ldf-allclient -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 -n /tmp/queries.json -l info -e $NBQUERIES -s 0 -c $CLIENTCACHE 2> tmp/log/$CLIENTCACHE-$NBQUERIES-lab$run-$SUFF.log
+   docker rm -f ldf-allclient
+   echo "Fin run $run"
+done
+
+docker rm -f ldf-server
