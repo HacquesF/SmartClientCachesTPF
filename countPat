@@ -1,0 +1,21 @@
+#!/bin/bash
+if [ ! $# -eq 2 ]
+then
+   echo "Needs exactly 2 argument. Usage: exStart logFolder patternFile "
+   exit 1
+fi
+touch tmp/count.log
+printf "" > tmp/count.log
+PATS=$2
+LOG=$1
+
+for log in `ls $LOG`;
+do
+   FULLNAME="$LOG/$log"
+   TOT=$(wc -l "$FULLNAME")
+   COUNTPAT=$(fgrep -f $PATS "$FULLNAME" | wc -l)
+   NAME=$(ls "$FULLNAME" | sed 's/-/ /g' | sed 's/^.*\///g' | sed 's/\..*$//g')
+   TOT=$(echo "$TOT" | awk '{print $1}')
+   echo "$NAME $COUNTPAT $TOT" >> tmp/count.log
+done
+

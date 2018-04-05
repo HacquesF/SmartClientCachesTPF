@@ -7,7 +7,7 @@
   "node": ">=4.0"
  },
  "bin": {
-  "ldf-allClient": "./bin/ldf-allClient"
+  "ldf-allClient": "./ldf-allClient"
  },
  "dependencies": {
   "ldf-client": "^2.0.5"
