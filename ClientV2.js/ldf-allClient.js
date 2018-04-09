@@ -9,6 +9,8 @@ var Cache = require('lru-cache');
 //l = type of log
 //c = max cache size
 //h = number of concurrent request
+//blist = activate blacklist for big queries
+//res = output res in 1
 //Set up args
 var argv = require('minimist')(process.argv.slice(2));
 //console.dir(argv);
@@ -29,7 +31,20 @@ if(argv.n){
    const startQuerie = argv.s || 0;
    var file = fs.readFileSync(fileName, 'utf8');
    queries = JSON.parse(file);
-   queries = queries.slice(startQuerie, nbQueries)
+   queries = queries.slice(startQuerie, nbQueries);
+   if(argv.blist){
+      blacklist = [9,12,34,37,59,62,84,87,109,112,134,137,159,161,183,186]
+      //Remove before to get same workload
+      var found = blacklist.findIndex(function(element) {
+         return element >= startQuerie;
+      });
+      next=blacklist[found]
+      for(var i=1;next<nbQueries;++i){
+         queries.splice(next-startQuerie,1)
+         next=blacklist[i]-i
+      }
+   }
+   
 }
 
 function execute(query) {
@@ -40,11 +55,17 @@ function execute(query) {
 	var result = new ldf.SparqlIterator(query, { fragmentsClient: fragmentsClient })
 	result.on('data', (res) => {
 		//
-		console.log(res);
+		if(argv.res){
+		   console.log(res);
+		}
+		
 	})
 	result.on('end', () => {
 	   //console.log('done')
-	   console.log(']');
+	   if(argv.res){
+		   console.log(']');
+		}
+	   
 		resolve()
 	})
    })
@@ -58,7 +79,10 @@ queries.reduce((acc, query) => acc.then((globalResult) => {
 //		})
 //	})
 //   process.stdout.write("#");
-   console.log('[');
+   if(argv.res){
+      console.log('[');
+	}
+  
 	return execute(query)
 }), Promise.resolve([])).then((finalResult) => {
 //   process.stdout.write("]\n");
