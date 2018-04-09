@@ -40,9 +40,11 @@ function execute(query) {
 	var result = new ldf.SparqlIterator(query, { fragmentsClient: fragmentsClient })
 	result.on('data', (res) => {
 		//
+		console.log(res);
 	})
 	result.on('end', () => {
 	   //console.log('done')
+	   console.log(']');
 		resolve()
 	})
    })
@@ -56,6 +58,7 @@ queries.reduce((acc, query) => acc.then((globalResult) => {
 //		})
 //	})
 //   process.stdout.write("#");
+   console.log('[');
 	return execute(query)
 }), Promise.resolve([])).then((finalResult) => {
 //   process.stdout.write("]\n");

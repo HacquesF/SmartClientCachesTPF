@@ -1,8 +1,9 @@
 #!/bin/bash
-if [ $# -lt 2 ] || [ $# -gt 5 ] ;
+if [ $# -lt 2 ] || [ $# -gt 6 ] ;
 then
    echo "Needs exactly 3 arguments. Usage: dockClient ServerIP ClientNumber NumberOfQueries"
    echo "An optional 4th arguments can be added to specify the cache size"
+   echo "A fifth to add a number at the end of res file name"
    exit 1
 fi
 
@@ -18,15 +19,17 @@ NBQUERIES=$3
 (( END=$NBQUERIES*$CLIENTNB ))
 (( START=$NBQUERIES*($CLIENTNB-1) ))
 
+
 #Run the client
 echo "Starting client $CLIENTNB"
 if [ $# -eq 3 ]
 then
    docker run --name ldf-allclient$CLIENTNB -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 -n /tmp/queries.json -e $END -s $START
-elif [ $# -eq 4 ]
+elif [ $# -eq 4 ] || [ $# -eq 5 ] ;
 then
    CACHE=$4
-   docker run --name ldf-allclient$CLIENTNB -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 -n /tmp/queries.json -e $END -s $START -c $CACHE
+   run=$5
+   docker run --name ldf-allclient$CLIENTNB -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 -n /tmp/queries.json -e $END -s $START -c $CACHE > tmp/log/cl$CLIENTNB-$CACHE-$NBQUERIES-$run.res
 fi
 echo "Client $CLIENTNB as finished"
 

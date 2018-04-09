@@ -69,7 +69,7 @@ do
       for client in `seq 1 $NBCLIENT`;
       do
          #Exec them in background so they run together
-         ./dockClient $SERVIP $client $NBQUERIES $CLIENTCACHE &
+         ./dockClient $SERVIP $client $NBQUERIES $CLIENTCACHE $run &
       done
       #Wait for everyone to come back
       wait
@@ -88,6 +88,9 @@ do
       TOT=`echo "$LOG" | wc -l`
       echo "Hitcur for run $run : $HITCURTOT, total is $TOT"
       
+      #Save full Log
+      echo "$LOG"> "tmp/log/All-$POLICY-$SIZE-$run.log"
+      
       #Clean Log and only keep duplicate
       LOG=`echo "$LOG" | sed 's/^.*GET //' | sed 's/ - HIER_.*$//' | sort | uniq -cd`
       
@@ -96,11 +99,11 @@ do
 #      if [ $run -eq 0 ]
 #      then
             #Cache
-         echo "$HITCURTOT : Number of hit" > "tmp/log/Cache-$POLICY-$SIZE-$run.log"
-         echo "$LOGHITCUR" | sort | uniq -cd | sort -bg | tail -n 10 >> "tmp/log/Cache-$POLICY-$SIZE-$run.log"
+         #echo "$HITCURTOT : Number of hit" > "tmp/log/Cache-$POLICY-$SIZE-$run.log"
+         #echo "$LOGHITCUR" | sort | uniq -cd | sort -bg | tail -n 10 >> "tmp/log/Cache-$POLICY-$SIZE-$run.log"
             #All
-         echo "$TOT : Number of hit" > "tmp/log/All-$POLICY-$SIZE-$run.log"
-         echo "$LOG" | sort -bg | tail -n 10 >> "tmp/log/All-$POLICY-$SIZE-$run.log"
+         #echo "$TOT : Number of hit" > "tmp/log/All-$POLICY-$SIZE-$run.log"
+         
 #      fi
       
       #Compute the hit rate
@@ -134,10 +137,10 @@ rm squid.conf
 #rm $FILE
 
 #Making the graph
-julia barHit.jl $FILE
+#julia barHit.jl $FILE
 
 #Renaming everything
 mv tmp/res.log tmp/$NBCLIENT-$NBQUERIES-$CLIENTCACHE.log
 mv tmp/log tmp/$NBCLIENT-$NBQUERIES-$CLIENTCACHE
-mv tmp/hit.svg tmp/$NBCLIENT-$NBQUERIES-$CLIENTCACHE.svg
+#mv tmp/hit.svg tmp/$NBCLIENT-$NBQUERIES-$CLIENTCACHE.svg
 mkdir tmp/log

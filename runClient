@@ -7,7 +7,7 @@ NBQUERIES=$1
 for run in `seq 0 2`;
 do
    echo "Start run $run"
-   docker run --name ldf-allclient -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 -n /tmp/queries.json -l info -e $NBQUERIES -s 0 -c $CLIENTCACHE -h 1 2> tmp/log/$CLIENTCACHE-$NBQUERIES-lab$run-$SUFF.log
+   docker run --name ldf-allclient -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 -n /tmp/queries.json -l info -e $NBQUERIES -s 0 -c $CLIENTCACHE -h 1 2> tmp/log/$CLIENTCACHE-$NBQUERIES-lab$run-$SUFF.log > tmp/log/$CLIENTCACHE-$NBQUERIES-lab$run-$SUFF.res
    docker rm -f ldf-allclient
    echo "Fin run $run"
 done

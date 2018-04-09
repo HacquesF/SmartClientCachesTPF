@@ -1,0 +1,58 @@
+#!/bin/bash
+#Execute all the squid configuration files from conf with argument 1 querie and 1 client
+#It will output in tmp/log the most hit pages, and a bar blot with the hit rates for each conf
+if [ ! $# -eq 3 ]
+then
+   echo "Needs exactly 3 argument. Usage: exStart NumberOfClients NumberOfQueries ClientCacheSize"
+   exit 1
+fi
+NBQUERIES=$2
+NBCLIENT=$1
+CLIENTCACHE=$3
+
+#Start the server
+./dockServer
+#Get the server ip
+SERVIP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ldf-server)
+
+##Need to set them up away to avoid logging sudo on this terminal
+###Setting the iptables
+###sudo ./setIptables
+#Loop between all squid conf files
+for squidC in `ls conf` ;
+do
+   #Select the good conf
+   rm squid.conf
+   cp conf/$squidC squid.conf
+   
+   #Start squid
+   ./dockSquid
+   #Loop the runs
+   for run in `seq 0 2`;
+   do
+
+      for client in `seq 1 $NBCLIENT`;
+      do
+         #Exec them in background so they run together
+         ./dockClient $SERVIP $client $NBQUERIES $CLIENTCACHE &
+      done
+      #Wait for everyone to come back
+      wait
+      
+      #Read cache log
+      docker exec squid cat /var/log/squid3/access.log > tmp/log/$NBQUERIES-$NBCLIENT-$CLIENTCACHE-$run.log
+      
+      #Reset Squid to erase the cache
+      ./hardSquidReset
+   done
+   #Reset Squid to erase the cache
+   docker rm -f squid
+done
+
+#Stopping the server
+docker rm -f ldf-server
+
+#Clean up
+rm squid.conf
+#./remIptables
+#rm $FILE
