@@ -69,7 +69,7 @@ do
       for client in `seq 1 $NBCLIENT`;
       do
          #Exec them in background so they run together
-         ./dockClient $SERVIP $client $NBQUERIES $CLIENTCACHE $run &
+         ./dockClient $SERVIP $client $NBQUERIES $CLIENTCACHE $POLICY$run &
       done
       #Wait for everyone to come back
       wait
