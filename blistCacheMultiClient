@@ -1,0 +1,134 @@
+#!/bin/bash
+#Execute all the squid configuration files from conf with argument 1 querie and 1 client
+#It will output in tmp/log the most hit pages, and a bar blot with the hit rates for each conf
+if [ ! $# -eq 3 ]
+then
+   echo "Needs exactly 3 argument. Usage: exStart NumberOfClients NumberOfQueries ClientCacheSize"
+   exit 1
+fi
+NBQUERIES=$2
+NBCLIENT=$1
+CLIENTCACHE=$3
+
+#Output file for plot
+FILE="tmp/res.log"
+rm $FILE
+touch $FILE
+mkdir -p tmp/log
+
+#Start the server
+./dockServer
+#Get the server ip
+SERVIP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ldf-server)
+
+##Need to set them up away to avoid logging sudo on this terminal
+###Setting the iptables
+###sudo ./setIptables
+
+#Variable used
+POLICY=""
+SIZE=""
+CONF=""
+LOG=""
+HITCUR=0
+HITPOSSCUR=0
+SCALEHITCUR=0
+LOGHITCUR=""
+HITAVG=0
+TOT=0
+HITPOSS=0
+HITCURTOT=0
+
+#Loop between all squid conf files
+for squidC in `ls conf` ;
+do
+   #Select the good conf
+   rm squid.conf
+   cp conf/$squidC squid.conf
+   
+   #Start squid
+   ./dockSquid
+   
+   #Get policy and size initialised for this run
+   #Read conf file
+   CONF=$(docker exec squid cat /etc/squid3/squid.conf)
+   #Extract policy
+   POLICY=`echo "$CONF" | grep memory_replacement_policy | cut -c27-`
+   POLICY=${POLICY// /-}
+   #Extract size
+   SIZE=`echo "$CONF" | grep cache_mem | tr -dc '0-9'`
+   CONF=""
+   echo "$POLICY : $SIZE"
+   #Loop the runs
+   for run in `seq 0 2`;
+   do
+      #Clean up for ram
+      LOG=""
+      LOGHITCUR=""
+      #Run clients
+      for client in `seq 1 $NBCLIENT`;
+      do
+         (( END=$NBQUERIES*$client ))
+         (( START=$NBQUERIES*($client-1) ))
+         #Exec them in background so they run together
+         docker run --name ldf-allclient$client -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 -n /tmp/queries.json -e $END -s $START -c $CLIENTCACHE -h 1 --res > tmp/log/$CLIENTCACHE-$NBQUERIES-cl$client-$POLICY$run.res &
+      done
+      #Wait for everyone to come back
+      wait
+      for client in `seq 1 $NBCLIENT`;
+      do
+         docker rm -f ldf-allclient$client
+      done
+      
+      #Read cache log
+      LOG=$(docker exec squid cat /var/log/squid3/access.log)
+      
+      #Get reduced hit log with numbers and removed one time occurences
+      LOGHITCUR=`echo "$LOG" | grep TCP.*_HIT | sed 's/^.*GET //' | sed 's/ - HIER_.*$//'`
+      
+      
+      #Get the number of hits
+      HITCURTOT=`echo "$LOGHITCUR" | wc -l`
+      
+      #Get the number of http call
+      TOT=`echo "$LOG" | wc -l`
+      echo "Hitcur for run $run : $HITCURTOT, total is $TOT"
+      
+      #Save full Log
+      echo "$LOG"> "tmp/log/All-$POLICY-$SIZE-$run.log"
+      
+      #Clean Log and only keep duplicate
+      LOG=`echo "$LOG" | sed 's/^.*GET //' | sed 's/ - HIER_.*$//' | sort | uniq -cd`
+    
+      #Compute the hit rate
+      HITCUR=$(echo "scale=4; ($HITCURTOT*100/$TOT)" | bc)
+      echo "Percentage calculated : $HITCUR"
+      HITAVG=$(echo "scale=4; ($HITAVG*$run+$HITCUR)/($run+1)" | bc)
+      
+      #Compute the new maximum hit possible
+      
+         #Extract and add all the numbers
+      HITPOSSCUR=`echo "$LOG" | grep -o "^ *[0-9]*" | sed 's/^ *//' | awk '{s+=$1-1} END {print s}'`
+      HITPOSSCUR=$(echo "scale=4; ($HITPOSSCUR*100/$TOT)" | bc)
+      HITPOSS=$(echo "scale=4; ($HITPOSS*$run+$HITPOSSCUR)/($run+1)" | bc)
+      echo "Maximum possible hit percent : $HITPOSS"
+      
+      #Reset Squid to erase the cache
+      ./hardSquidReset
+   done
+   #Reset Squid to erase the cache
+   docker rm -f squid
+   #Write the stats for that conf
+   echo "$POLICY $SIZE $HITAVG $HITPOSS" >> $FILE
+done
+
+#Stopping the server
+docker rm -f ldf-server
+
+#Clean up
+rm squid.conf
+#Renaming everything
+mv tmp/res.log tmp/$NBCLIENT-$NBQUERIES-$CLIENTCACHE.log
+mv tmp/log tmp/$NBCLIENT-$NBQUERIES-$CLIENTCACHE
+#mv tmp/hit.svg tmp/$NBCLIENT-$NBQUERIES-$CLIENTCACHE.svg
+mkdir tmp/log

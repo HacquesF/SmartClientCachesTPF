@@ -15,7 +15,7 @@ do
    do
       FULLNAME="$LOG/$log"
       TOT=$(wc -l "$FULLNAME")
-      COUNTPAT=$(grep -E "$pred($|&)" "$FULLNAME" | wc -l)
+      COUNTPAT=$(cat "$FULLNAME" | awk '{print $7}' | grep -E "$pred($|&)" "$FULLNAME" | wc -l)
       NAME=$(ls "$FULLNAME" | sed 's/-/ /g' | sed 's/^.*\///g' | sed 's/\..*$//g')
       TOT=$(echo "$TOT" | awk '{print $1}')
       echo "$NAME $pred $COUNTPAT $TOT" >> tmp/count.log
