@@ -6,7 +6,13 @@
 	"type": "HdtDatasource",
 	"description": "BSBM1000",
 	"settings": {"file": "/tmp/datasets/scale1000.hdt"}
-   } 
+   }
+   "scale10000":{
+      "title" "BSBM10000",
+      "type": "TurtleDatasource",
+      "description": "BSBM10000",
+      "settings": {"file": "tmp/datasets/3_5M_BSBM10K.ttl"}
+   }
   },
 
   "prefixes": {

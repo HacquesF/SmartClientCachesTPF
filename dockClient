@@ -24,12 +24,12 @@ NBQUERIES=$3
 echo "Starting client $CLIENTNB"
 if [ $# -eq 3 ]
 then
-   docker run --name ldf-allclient$CLIENTNB -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 -n /tmp/queries.json -e $END -s $START
+   docker run --name ldf-allclient$CLIENTNB -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 -n /tmp/queries.json -e $END -s $START -h 1
 elif [ $# -eq 4 ] || [ $# -eq 5 ] ;
 then
    CACHE=$4
    suf=$5
-   docker run --name ldf-allclient$CLIENTNB -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 -n /tmp/queries.json -e $END -s $START -c $CACHE > tmp/log/cl$CLIENTNB-$CACHE-$NBQUERIES-$suf.res
+   docker run --name ldf-allclient$CLIENTNB -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 -n /tmp/queries.json -e $END -s $START -c $CACHE -h 1 > tmp/log/cl$CLIENTNB-$CACHE-$NBQUERIES-$suf.res
 fi
 echo "Client $CLIENTNB as finished"
 
