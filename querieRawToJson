@@ -23,6 +23,7 @@ fi
 #%21 : !
 #%2B : +
 #%26 : &
+#%2C : ,
 #s/\%//g
 OUT=tmp/queryOut.json
 echo -e "[\n" > $OUT
@@ -46,6 +47,7 @@ s/\+/ /g
 s/\%21/\!/g
 s/\%26/\&/g
 s/\%2B/\+/g
+s/\%2C/\,/g
 '>> $OUT
 sed -i '$ d' $OUT
 sed -i '$ s/,$/\n]/' $OUT
