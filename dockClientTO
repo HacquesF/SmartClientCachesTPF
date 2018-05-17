@@ -1,0 +1,41 @@
+#!/bin/bash
+if [ $# -lt 2 ] || [ $# -gt 6 ] ;
+then
+   echo "Needs exactly 5 arguments. Usage: dockClient ServerIP ClientNumber NumberOfQueries TimeoutMS suff"
+   echo "Suff will be added at the end of the result file"
+   echo "An optional 6th arguments can be added to specify the cache size"
+   exit 1
+fi
+
+if [ $2 -lt 1 ]
+then
+   echo "Client numbers start at 1, careful not to exec more queries than we got"
+   exit 1
+fi
+#Assign args
+SERVIP=$1
+CLIENTNB=$2
+NBQUERIES=$3
+TIMOUT=$4
+suf=$5
+(( END=$NBQUERIES*$CLIENTNB ))
+(( START=$NBQUERIES*($CLIENTNB-1) ))
+
+
+#Run the client
+echo "Starting client $CLIENTNB"
+if [ $# -eq 5 ]
+then
+   docker run --name ldf-allclient$CLIENTNB -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 -n /tmp/queries.json -e $END -s $START -h 1 --res -t $TIMOUT > tmp/log/cl$CLIENTNB-$NBQUERIES-$TIMOUT-$suf.res
+elif [ $# -eq 6 ] ;
+then
+   CACHE=$4
+   suf=$5
+   docker run --name ldf-allclient$CLIENTNB -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 -n /tmp/queries.json -e $END -s $START -c $CACHE --res -h 1 > tmp/log/cl$CLIENTNB-$CACHE-$NBQUERIES-$TIMOUT-$suf.res
+fi
+echo "Client $CLIENTNB as finished"
+
+#Remove the container once it has executed
+#Not using --rm to be sure not to be block by it on a second run
+docker rm ldf-allclient$CLIENTNB
+echo "Client $CLIENTNB removed"

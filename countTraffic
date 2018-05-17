@@ -6,7 +6,7 @@ do
    FILE="$DIR/$FILE"
    #echo $FILE
    TIME=$(echo "scale=4; (`tail -1 "$FILE" | awk '{print $1}'`-`head -1 "$FILE" | awk '{print $1}'`)" | bc)
-   NUMHIT=$(grep HIT "$FILE" | awk '{s+=$5} END {print s}')
+   NUMHIT=$(cat "$FILE" | awk '{s+=$5} END {print s}')
    TRAFFHIT=$(echo "scale=4; ($NUMHIT/$TIME)" | bc)
    #echo "Traffic cache (B/s):  $TRAFFHIT"
    NUMSERV=$(grep -v HIT "$FILE" | awk '{s+=$5} END {print s}')

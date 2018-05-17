@@ -1,1 +1,1 @@
-docker run  --rm --name ldf-server -d -t -i -v $(pwd)/configDock.json:/tmp/config.json -v $(pwd)/../zip/datasets:/tmp/datasets ldf-server /tmp/config.json
+docker run --rm --name ldf-server -d -t -i -p 3000:3000 -v $(pwd)/configDock.json:/tmp/config.json -v $(pwd)/../zip/datasets:/tmp/datasets ldf-server /tmp/config.json

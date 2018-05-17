@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run --name ldf-Hclient$1 -d -v $(pwd)/Client.js/config-default.json:/tmp/config.json ldf-client-http /tmp/config.json

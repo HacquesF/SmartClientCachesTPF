@@ -11,19 +11,20 @@ var Cache = require('lru-cache');
 //h = number of concurrent request
 //blist = activate blacklist for big queries
 //res = output res in 1
+//t = timeout in ms
 //Set up args
+
 var argv = require('minimist')(process.argv.slice(2));
 //console.dir(argv);
 
 const server = argv._;
-
+var timeONb = 0;
 //Set up log level
    ldf.Logger.setLevel(argv.l || 'warning');
 
 //Read queries file
 //const server = process.argv[2]
 var queries = [argv.q] || [];
-
 if(argv.n){
    const fileName = argv.n;
    //If no args, just the first one
@@ -50,24 +51,43 @@ if(argv.n){
 function execute(query) {
    return new Promise(resolve => {
       //var results = new ldf.SparqlIterator(queries[value], { fragmentsClient: fragmentsClient })
-	var fragmentsClient = new ldf.FragmentsClient(server,{ concurrentRequests: argv.h || 10 });
-	fragmentsClient._cache = new Cache({ max: argv.c || 100 });
-	var result = new ldf.SparqlIterator(query, { fragmentsClient: fragmentsClient })
-	result.on('data', (res) => {
-		//
-		if(argv.res){
-		   console.log(res);
-		}
+      var start= Date.now();
+      var to=false
+	   var fragmentsClient = new ldf.FragmentsClient(server,{ concurrentRequests: argv.h || 10 });
+	   fragmentsClient._cache = new Cache({ max: argv.c || 100 });
+	   var result = new ldf.SparqlIterator(query, { fragmentsClient: fragmentsClient });
+	
+	   if(argv.t){
+	      timeO=setTimeout(function(){
+            timeONb +=1
+            to=true
+            fragmentsClient.abortAll();
+            result.close()
+	      }, argv.t);
+	   }
+	   result.on('data', (res) => {
+		   //
+		   if(argv.res){
+		      console.log(res);
+		   }
+   //		var millis = Date.now() - start;
+   //		if(millis > argv.t){
+   // 	      console.log('Timed out');
+   //	      fragmentsClient.abortAll();  
+   //		}
 		
-	})
-	result.on('end', () => {
-	   //console.log('done')
-	   if(argv.res){
-		   console.log(']');
-		}
-	   
-		resolve()
-	})
+	   })
+	   result.on('end', () => {
+	      //console.log('done')
+	      if(argv.t && !to){
+	         clearTimeout(timeO);
+	      }
+	      if(argv.res){
+		      console.log(']');
+		   }
+	      console.log("'Time': ", (Date.now() - start))
+		   resolve()
+	   })
    })
 }
 
@@ -82,12 +102,13 @@ queries.reduce((acc, query) => acc.then((globalResult) => {
    if(argv.res){
       console.log('[');
 	}
-  
 	return execute(query)
 }), Promise.resolve([])).then((finalResult) => {
 //   process.stdout.write("]\n");
 	//console.log('Finished', finalResult)
-	
+	if(argv.t){
+	   console.log("'Timeouts': ", timeONb);
+	}
 })
 
 

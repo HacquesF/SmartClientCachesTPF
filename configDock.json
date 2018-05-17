@@ -36,7 +36,7 @@
   },
 
   "logging": {
-    "enabled": false,
+    "enabled": true,
     "file": "/tmp/accessScale1000.log"
   }
 }

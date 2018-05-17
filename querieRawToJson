@@ -1,0 +1,52 @@
+#!/bin/bash
+if [ $# -lt 1 ] ;
+then
+   echo "Needs exactly 1 argument. Usage: querieRawToJson rawQuerieFile"
+   exit 1
+fi
+#Replacement made, finding the full list could be good
+#%3A : :
+#%3C : <
+#%2F : /
+#%3E : >
+#%0A : \n
+#%3F : ?
+#%7B : {
+#%7D : }
+#%23 : #
+#%28 : (
+#%29 : )
+#%3D : =
+#%09 : \t
+#%22 : "
+#%5E : ^
+#%21 : !
+#%2B : +
+#%26 : &
+#s/\%//g
+OUT=tmp/queryOut.json
+echo -e "[\n" > $OUT
+grep -F "[200]" $1 | sed "s/^.*query=//" | sed "s/^/\"/" | sed "s/$/\",\n/" | sed '
+s/\%3A/:/g
+s/\%3C/</g
+s/\%3E/>/g
+s/\%2F/\//g
+s/\%0A/\\n/g
+s/\%3F/\?/g
+s/\%7B/\{/g
+s/\%7D/\}/g
+s/\%23/\#/g
+s/\%28/\(/g
+s/\%29/\)/g
+s/\%3D/=/g
+s/\%09/\\t/g
+s/\%22/\\\"/g
+s/\%5E/\^/g
+s/\+/ /g
+s/\%21/\!/g
+s/\%26/\&/g
+s/\%2B/\+/g
+'>> $OUT
+sed -i '$ d' $OUT
+sed -i '$ s/,$/\n]/' $OUT
+
