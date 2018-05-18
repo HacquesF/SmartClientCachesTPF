@@ -12,5 +12,5 @@ do
    NUMSERV=$(grep -v HIT "$FILE" | awk '{s+=$5} END {print s}')
    TRAFFSERV=$(echo "scale=4; ($NUMSERV/$TIME)" | bc)
    #echo "Traffic server (B/s): $TRAFFSERV"
-   echo "$(ls $FILE | grep -E -o 'GDSF|LFUDA|lru') $clients $TRAFFHIT $TRAFFSERV"
+   echo "$(ls $FILE | grep -E -o 'GDSF|LFUDA|lru') $clients $NUMHIT $TRAFFHIT $TRAFFSERV"
 done

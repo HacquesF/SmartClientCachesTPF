@@ -1,35 +1,36 @@
 #!/bin/bash
 if [ $# -lt 2 ] || [ $# -gt 6 ] ;
 then
-   echo "Needs exactly 3 arguments. Usage: dockClient ServerIP ClientNumber NumberOfQueries"
-   echo "An optional 4th arguments can be added to specify the cache size"
-   echo "A fifth to add something at the end of res file name"
+   echo "Needs exactly 4 arguments. Usage: dockClient ServerIP NameOfDataset/QuerieFile ClientNumber NumberOfQueries"
+   echo "An optional 5th arguments can be added to specify the cache size"
+   echo "A sixth to add something at the end of res file name"
    exit 1
 fi
 
-if [ $2 -lt 1 ]
+if [ $3 -lt 1 ]
 then
    echo "Client numbers start at 1, careful not to exec more queries than we got"
    exit 1
 fi
 #Assign args
 SERVIP=$1
-CLIENTNB=$2
-NBQUERIES=$3
+CLIENTNB=$3
+NBQUERIES=$4
+DATANAME=$2
 (( END=$NBQUERIES*$CLIENTNB ))
 (( START=$NBQUERIES*($CLIENTNB-1) ))
 
 
 #Run the client
 echo "Starting client $CLIENTNB"
-if [ $# -eq 3 ]
+if [ $# -eq 4 ]
 then
-   docker run --name ldf-allclient$CLIENTNB -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 -n /tmp/queries.json -e $END -s $START -h 1
-elif [ $# -eq 4 ] || [ $# -eq 5 ] ;
+   docker run --name ldf-allclient$CLIENTNB -v $(pwd)/../zip/queries/"$DATANAME"_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/"$DATANAME" -n /tmp/queries.json -e $END -s $START -h 1
+elif [ $# -eq 5 ] || [ $# -eq 6 ] ;
 then
-   CACHE=$4
-   suf=$5
-   docker run --name ldf-allclient$CLIENTNB -v $(pwd)/../zip/queries/scale1000_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/scale1000 -n /tmp/queries.json -e $END -s $START -c $CACHE --res -h 1 > tmp/log/cl$CLIENTNB-$CACHE-$NBQUERIES-$suf.res
+   CACHE=$5
+   suf=$6
+   docker run --name ldf-allclient$CLIENTNB -v $(pwd)/../zip/queries/"$DATANAME"_queries.json:/tmp/queries.json ldf-allclient http://$SERVIP:3000/"$DATANAME" -n /tmp/queries.json -e $END -s $START -c $CACHE --res -h 1 > tmp/log/cl$CLIENTNB-$CACHE-$NBQUERIES-$suf.res
 fi
 echo "Client $CLIENTNB as finished"
 
